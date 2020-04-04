@@ -42,14 +42,18 @@ class OpenProjectClient:
     def get(self, path: str):
         url = '{}{}'.format(self.api_url, path)
         logging.info('GET {}'.format(url))
-        result = requests.get(url, auth=self.auth).raise_for_status().json()
+        resp = requests.get(url, auth=self.auth)
+        resp.raise_for_status()
+        result = resp.json()
         logging.debug('response {}'.format(result))
         return result
 
     def post(self, path: str, json):
         url = '{}{}'.format(self.api_url, path)
         logging.info('POST {} with {}'.format(url, json))
-        result = requests.post(url=url, json=json, auth=self.auth).raise_for_status().json()
+        resp = requests.post(url=url, json=json, auth=self.auth)
+        resp.raise_for_status()
+        result = resp.json()
         logging.debug('response {}'.format(result))
         return result
 
