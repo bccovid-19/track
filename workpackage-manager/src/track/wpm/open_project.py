@@ -44,7 +44,7 @@ class OpenProjectClient:
     api_url: str
 
     def __init__(self, config):
-        self.api_url = config['open_project_api']['url'] + '/api/v3'
+        self.api_url = config['open_project_api']['url']
         api_key = config['open_project_api']['key']
         self.auth = HTTPBasicAuth(username='apikey', password=api_key)
 
@@ -67,7 +67,7 @@ class OpenProjectClient:
         return result
 
     def get_work_package(self, id: int):
-        return self.get('/work_packages/{}'.format(id))
+        return self.get('/api/v3/work_packages/{}'.format(id))
 
     def get_children(self, work_package):
         if 'children' in work_package['_links']:
@@ -77,4 +77,4 @@ class OpenProjectClient:
             return []
 
     def create_work_package(self, spec: WorkPackageSpec):
-        return self.post('/work_packages', spec.as_openproject_object())
+        return self.post('/api/v3/work_packages', spec.as_openproject_object())
