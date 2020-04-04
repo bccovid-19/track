@@ -25,7 +25,7 @@ class WorkPackageSpec(NamedTuple):
                 'type': {
                     'href': '/api/v3/types/{}'.format(self.type_id)
                 },
-                'projects': {
+                'project': {
                     'href': '/api/v3/projects/{}'.format(self.project_id)
                 },
                 'status': {
