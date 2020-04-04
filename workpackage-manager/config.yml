@@ -1,18 +1,22 @@
 ---
-openProjectApi:
+open_project_api:
   key: 5c0a6bc1789cd2b36e771ef3b6597530a718a835285b147e051fb508fd4b2a3c
   url: https://track.bcc3d.ca
 
-productionFields:
-  - name: Face Shield Frame
-    openProjectKey: customField7
-    batchSize: 10
-  - name: Visors
-    openProjectKey: customField8
-    batchSize: 10
-  - name: Ear Savers
-    openProjectKey: customField9
-    batchSize: 10
+fields:
+  batched:
+    - name: Face Shield Frame
+      open_project_key: customField7
+      batch_size: 10
+    - name: Visors
+      open_project_key: customField8
+      batch_size: 10
+    - name: Ear Savers
+      open_project_key: customField9
+      batch_size: 10
+  propagated:
+    - name: Urgency
+      open_project_key: customField6
 
 server:
   port: 39586

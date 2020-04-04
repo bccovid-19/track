@@ -1,0 +1,60 @@
+{
+  "subject": "Test 6",
+  "startDate": null,
+  "dueDate": null,
+  "estimatedTime": null,
+  "percentageDone": 0,
+  "storyPoints": null,
+  "remainingTime": null,
+  "customField9": 0,
+  "customField7": 10,
+  "customField8": 0,
+  "_links": {
+    "category": {
+      "href": null
+    },
+    "type": {
+      "href": "/api/v3/types/4",
+      "title": "Production Order"
+    },
+    "priority": {
+      "href": "/api/v3/priorities/8",
+      "title": "Normal"
+    },
+    "project": {
+      "href": "/api/v3/projects/3",
+      "title": "PPE"
+    },
+    "status": {
+      "href": "/api/v3/statuses/1",
+      "title": "New"
+    },
+    "responsible": {
+      "href": null
+    },
+    "assignee": {
+      "href": null
+    },
+    "version": {
+      "href": null
+    },
+    "parent": {
+      "uncacheable": true,
+      "href": null,
+      "title": null
+    },
+    "costObject": {
+      "href": null
+    },
+    "customField6": {
+      "href": "/api/v3/custom_options/8"
+    },
+    "self": {
+      "href": null
+    },
+    "attachments": []
+  },
+  "description": {
+    "raw": ""
+  }
+}
