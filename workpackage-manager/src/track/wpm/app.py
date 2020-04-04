@@ -11,7 +11,7 @@ SUCCESS_RESPONSE = json.dumps({'success': True})
 ORDER_TYPE_ID = 1
 PRODUCTION_ORDER_TYPE_ID = 4
 CONFIRMED_STATUS_ID = 4
-PPE_PROJECT_ID = 4
+PPE_PROJECT_ID = 3
 
 
 class BatchedField(NamedTuple):
