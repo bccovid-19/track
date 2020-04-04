@@ -43,7 +43,7 @@ def create_batched_sub_orders(super_order: Order, existing_sub_orders: List[Orde
         batch_size = batched_field.batch_size
         required = super_order.quantities[key]
         existing = sum([existing.quantities[key] for existing in existing_sub_orders])
-        new_batches = math.ceil(max(0, existing - required) / batched_field.batch_size)
+        new_batches = math.ceil(max(0, required - existing) / batched_field.batch_size)
         subject = '{} - {} x{}'.format(super_order.subject, batched_field.name, batch_size)
         for _ in range(new_batches):
             yield Order(quantities={key: batch_size}, subject=subject)
