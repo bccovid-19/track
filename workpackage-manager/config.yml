@@ -1,7 +1,18 @@
 ---
 openProjectApi:
-  user: bot@track.bcc3d.ca
   key: 5c0a6bc1789cd2b36e771ef3b6597530a718a835285b147e051fb508fd4b2a3c
+  url: https://localhost
+
+productionFields:
+  - name: Face Shield Frame
+    openProjectKey: customField7
+    batchSize: 10
+  - name: Visors
+    openProjectKey: customField8
+    batchSize: 10
+  - name: Ear Savers
+    openProjectKey: customField9
+    batchSize: 10
 
 server:
   port: 39586
