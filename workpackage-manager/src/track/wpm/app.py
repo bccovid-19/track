@@ -76,7 +76,7 @@ def update_work_package(work_package_id):
         existing_children = openproject.get_children(wp)
         existing_orders = [parse_order(child) for child in existing_children]
         logging.info('found existing batches: {}'.format(existing_orders))
-        new_batches = create_batched_sub_orders(wp_order, existing_orders)
+        new_batches = list(create_batched_sub_orders(wp_order, existing_orders))
         logging.info('new batches required: {}'.format(new_batches))
         for order in new_batches:
             create_production_order(work_package_id, order)
