@@ -55,7 +55,7 @@ class OpenProjectClient:
         # return result
 
     def get_work_package(self, id: int):
-        return self.get('/work_packages/{}'.format(id)).json()
+        return self.get('/work_packages/{}'.format(id))
 
     def get_children(self, work_package):
         children = work_package['_links']['children']
