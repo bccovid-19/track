@@ -25,15 +25,15 @@ class WorkPackageSpec(NamedTuple):
                 'type': {
                     'href': '/api/v3/types/{}'.format(self.type_id)
                 },
-                'project': {
+                'projects': {
                     'href': '/api/v3/projects/{}'.format(self.project_id)
                 },
                 'status': {
-                    'href': '/api/v3/statuses/{}'.format(self.status_id)
-                } if self.status_id else None,
+                    'href': '/api/v3/statuses/{}'.format(self.status_id) if self.status_id else None
+                },
                 'parent': {
-                    'href': '/api/v3/work_packages/{}'.format(self.parent_id)
-                } if self.parent_id else None
+                    'href': '/api/v3/work_packages/{}'.format(self.parent_id) if self.parent_id else None
+                }
             },
             **self.extra_fields
         }

@@ -39,15 +39,18 @@ app = Flask(__name__)
 
 
 def create_batched_sub_orders(super_order: Order, existing_sub_orders: List[Order]) -> Iterator[Order]:
+    all_keys = {f.open_project_key for f in batched_fields}
+    default_quantities = {k: 0 for k in all_keys}
     for batched_field in batched_fields:
         key = batched_field.open_project_key
+        other_keys = [k for k in all_keys if k != key]
         batch_size = batched_field.batch_size
         required = super_order.quantities[key]
         existing = sum([existing.quantities[key] for existing in existing_sub_orders])
         new_batches = math.ceil(max(0, required - existing) / batched_field.batch_size)
         subject = '{} - {} x{}'.format(super_order.subject, batched_field.name, batch_size)
         for _ in range(new_batches):
-            yield Order(quantities={key: batch_size}, subject=subject)
+            yield Order(quantities={**default_quantities, key: batch_size}, subject=subject)
 
 
 def parse_order(order_dict) -> Order:
