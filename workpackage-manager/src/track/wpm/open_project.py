@@ -43,7 +43,7 @@ class OpenProjectClient:
         url = '{}{}'.format(self.api_url, path)
         logging.info('GET {}'.format(url))
         result = requests.get(url, auth=self.auth).json()
-        logging.info('response {}'.format(result))
+        logging.debug('response {}'.format(result))
         return result
 
     def post(self, path: str, json):
@@ -51,15 +51,18 @@ class OpenProjectClient:
         logging.info('POST {} with {}'.format(url, json))
         return None
         # result = requests.post(url=url, json=json, auth=self.auth).json()
-        # logging.info('response {}'.format(result))
+        # logging.debug('response {}'.format(result))
         # return result
 
     def get_work_package(self, id: int):
         return self.get('/work_packages/{}'.format(id))
 
     def get_children(self, work_package):
-        children = work_package['_links']['children']
-        return [self.get(child['href']) for child in children]
+        if 'children' in work_package['_links']:
+            children = work_package['_links']['children']
+            return [self.get(child['href']) for child in children]
+        else:
+            return []
 
     def create_work_package(self, spec: WorkPackageSpec):
         return self.post('/work_packages', spec.as_openproject_object())

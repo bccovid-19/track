@@ -24,7 +24,7 @@ class Order(NamedTuple):
     quantities: Dict[str, int]
 
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 with open(CONFIG_FILE, 'r') as f:
     config = yaml.safe_load(f)
@@ -80,6 +80,8 @@ def update_work_package(work_package_id):
         logging.info('new batches required: {}'.format(new_batches))
         for order in new_batches:
             create_production_order(work_package_id, order)
+    else:
+        logging.info('no action required for {}'.format(work_package_id))
 
 
 @app.route('/update', methods=['POST'])
