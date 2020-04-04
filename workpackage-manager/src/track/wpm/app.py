@@ -3,7 +3,7 @@ import logging
 import yaml
 from typing import NamedTuple
 
-from wpm.open_project import OpenProjectClient
+from track.wpm.open_project import OpenProjectClient
 
 CONFIG_FILE = 'config.yml'
 SUCCESS_RESPONSE = json.dumps({'success': True})
