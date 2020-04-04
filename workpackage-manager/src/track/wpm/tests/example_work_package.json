@@ -1,0 +1,450 @@
+{
+  "spentTime": "PT0S",
+  "laborCosts": "0.00 CAD",
+  "materialCosts": "0.00 CAD",
+  "overallCosts": "0.00 CAD",
+  "_embedded": {
+    "attachments": {
+      "_type": "Collection",
+      "total": 0,
+      "count": 0,
+      "_embedded": {
+        "elements": []
+      },
+      "_links": {
+        "self": {
+          "href": "/api/v3/work_packages/44/attachments"
+        }
+      }
+    },
+    "watchers": {
+      "_type": "Collection",
+      "total": 0,
+      "count": 0,
+      "_embedded": {
+        "elements": []
+      },
+      "_links": {
+        "self": {
+          "href": "/api/v3/work_packages/44/watchers"
+        }
+      }
+    },
+    "relations": {
+      "_type": "Collection",
+      "total": 1,
+      "count": 1,
+      "_embedded": {
+        "elements": [
+          {
+            "_type": "Relation",
+            "id": 94,
+            "name": "translation missing: en.label_",
+            "delay": null,
+            "description": null,
+            "_links": {
+              "self": {
+                "href": "/api/v3/relations/94"
+              },
+              "updateImmediately": {
+                "href": "/api/v3/relations/94",
+                "method": "patch"
+              },
+              "delete": {
+                "href": "/api/v3/relations/94",
+                "method": "delete",
+                "title": "Remove relation"
+              },
+              "from": {
+                "href": "/api/v3/work_packages/44",
+                "title": "Temp 1"
+              },
+              "to": {
+                "href": "/api/v3/work_packages/44",
+                "title": "Temp 1"
+              }
+            }
+          }
+        ]
+      },
+      "_links": {
+        "self": {
+          "href": "/api/v3/work_packages/44/relations"
+        }
+      }
+    },
+    "type": {
+      "_type": "Type",
+      "id": 1,
+      "name": "Order",
+      "color": "#1A67A3",
+      "position": 1,
+      "isDefault": true,
+      "isMilestone": false,
+      "createdAt": "2020-03-31T23:26:26Z",
+      "updatedAt": "2020-04-01T12:16:58Z",
+      "_links": {
+        "self": {
+          "href": "/api/v3/types/1",
+          "title": "Order"
+        }
+      }
+    },
+    "priority": {
+      "_type": "Priority",
+      "id": 8,
+      "name": "Normal",
+      "position": 2,
+      "color": "#D3F9D8",
+      "isDefault": true,
+      "isActive": true,
+      "_links": {
+        "self": {
+          "href": "/api/v3/priorities/8",
+          "title": "Normal"
+        }
+      }
+    },
+    "project": {
+      "_type": "Project",
+      "id": 3,
+      "identifier": "ppe",
+      "name": "PPE",
+      "active": true,
+      "public": false,
+      "description": {
+        "format": "markdown",
+        "raw": "",
+        "html": ""
+      },
+      "createdAt": "2020-04-01T11:36:09Z",
+      "updatedAt": "2020-04-01T11:36:09Z",
+      "status": null,
+      "statusExplanation": {
+        "format": "markdown",
+        "raw": "",
+        "html": ""
+      },
+      "_links": {
+        "self": {
+          "href": "/api/v3/projects/3",
+          "title": "PPE"
+        },
+        "createWorkPackage": {
+          "href": "/api/v3/projects/3/work_packages/form",
+          "method": "post"
+        },
+        "createWorkPackageImmediately": {
+          "href": "/api/v3/projects/3/work_packages",
+          "method": "post"
+        },
+        "workPackages": {
+          "href": "/api/v3/projects/3/work_packages"
+        },
+        "categories": {
+          "href": "/api/v3/projects/3/categories"
+        },
+        "versions": {
+          "href": "/api/v3/projects/3/versions"
+        },
+        "memberships": {
+          "href": "/api/v3/memberships?filters=%5B%7B%22project%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%223%22%5D%7D%7D%5D"
+        },
+        "types": {
+          "href": "/api/v3/projects/3/types"
+        },
+        "update": {
+          "href": "/api/v3/projects/3/form",
+          "method": "post"
+        },
+        "updateImmediately": {
+          "href": "/api/v3/projects/3",
+          "method": "patch"
+        },
+        "schema": {
+          "href": "/api/v3/projects/schema"
+        },
+        "parent": {
+          "href": null,
+          "title": null
+        }
+      }
+    },
+    "status": {
+      "_type": "Status",
+      "id": 1,
+      "name": "New",
+      "isClosed": false,
+      "color": "#C3FAE8",
+      "isDefault": true,
+      "isReadonly": false,
+      "defaultDoneRatio": null,
+      "position": 1,
+      "_links": {
+        "self": {
+          "href": "/api/v3/statuses/1",
+          "title": "New"
+        }
+      }
+    },
+    "author": {
+      "_type": "User",
+      "id": 13,
+      "name": "Will Sonnex",
+      "avatar": "https://secure.gravatar.com/avatar/6b21fb74be312d4b6426b1d990fe3c4b?default=404&secure=true",
+      "_links": {
+        "self": {
+          "href": "/api/v3/users/13",
+          "title": "Will Sonnex"
+        },
+        "memberships": {
+          "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%2213%22%5D%7D%7D%5D",
+          "title": "Members"
+        },
+        "showUser": {
+          "href": "/users/13",
+          "type": "text/html"
+        }
+      }
+    },
+    "customActions": [],
+    "costsByType": {
+      "_type": "Collection",
+      "total": 0,
+      "count": 0,
+      "_embedded": {
+        "elements": []
+      },
+      "_links": {
+        "self": {
+          "href": "/api/v3/work_packages/44/summarized_costs_by_type"
+        }
+      }
+    }
+  },
+  "_type": "WorkPackage",
+  "id": 44,
+  "lockVersion": 11,
+  "subject": "Temp 1",
+  "description": {
+    "format": "markdown",
+    "raw": "update",
+    "html": "<p>update</p>"
+  },
+  "startDate": null,
+  "dueDate": null,
+  "estimatedTime": null,
+  "derivedEstimatedTime": null,
+  "percentageDone": 0,
+  "createdAt": "2020-04-04T03:14:38Z",
+  "updatedAt": "2020-04-04T05:19:03Z",
+  "remainingTime": null,
+  "customField4": "Test",
+  "customField5": "Test",
+  "customField9": 5,
+  "customField7": 20,
+  "customField3": {
+    "format": "markdown",
+    "raw": "Test",
+    "html": "<p>Test</p>"
+  },
+  "customField1": "Test",
+  "customField8": 10,
+  "_links": {
+    "attachments": {
+      "href": "/api/v3/work_packages/44/attachments"
+    },
+    "addAttachment": {
+      "href": "/api/v3/work_packages/44/attachments",
+      "method": "post"
+    },
+    "self": {
+      "href": "/api/v3/work_packages/44",
+      "title": "Temp 1"
+    },
+    "update": {
+      "href": "/api/v3/work_packages/44/form",
+      "method": "post"
+    },
+    "schema": {
+      "href": "/api/v3/work_packages/schemas/3-1"
+    },
+    "updateImmediately": {
+      "href": "/api/v3/work_packages/44",
+      "method": "patch"
+    },
+    "delete": {
+      "href": "/api/v3/work_packages/44",
+      "method": "delete"
+    },
+    "logTime": {
+      "href": "/work_packages/44/time_entries/new",
+      "type": "text/html",
+      "title": "Log time on Temp 1"
+    },
+    "move": {
+      "href": "/work_packages/44/move/new",
+      "type": "text/html",
+      "title": "Move Temp 1"
+    },
+    "copy": {
+      "href": "/work_packages/44/copy",
+      "title": "Copy Temp 1"
+    },
+    "pdf": {
+      "href": "/work_packages/44.pdf",
+      "type": "application/pdf",
+      "title": "Export as PDF"
+    },
+    "atom": {
+      "href": "/work_packages/44.atom",
+      "type": "application/rss+xml",
+      "title": "Atom feed"
+    },
+    "availableRelationCandidates": {
+      "href": "/api/v3/work_packages/44/available_relation_candidates",
+      "title": "Potential work packages to relate to"
+    },
+    "customFields": {
+      "href": "/projects/ppe/settings/custom_fields",
+      "type": "text/html",
+      "title": "Custom fields"
+    },
+    "activities": {
+      "href": "/api/v3/work_packages/44/activities"
+    },
+    "availableWatchers": {
+      "href": "/api/v3/work_packages/44/available_watchers"
+    },
+    "relations": {
+      "href": "/api/v3/work_packages/44/relations"
+    },
+    "revisions": {
+      "href": "/api/v3/work_packages/44/revisions"
+    },
+    "watchers": {
+      "href": "/api/v3/work_packages/44/watchers"
+    },
+    "addWatcher": {
+      "href": "/api/v3/work_packages/44/watchers",
+      "method": "post",
+      "payload": {
+        "user": {
+          "href": "/api/v3/users/{user_id}"
+        }
+      },
+      "templated": true
+    },
+    "removeWatcher": {
+      "href": "/api/v3/work_packages/44/watchers/{user_id}",
+      "method": "delete",
+      "templated": true
+    },
+    "addRelation": {
+      "href": "/api/v3/work_packages/44/relations",
+      "method": "post",
+      "title": "Add relation"
+    },
+    "addChild": {
+      "href": "/api/v3/projects/ppe/work_packages",
+      "method": "post",
+      "title": "Add child of Temp 1"
+    },
+    "changeParent": {
+      "href": "/api/v3/work_packages/44",
+      "method": "patch",
+      "title": "Change parent of Temp 1"
+    },
+    "addComment": {
+      "href": "/api/v3/work_packages/44/activities",
+      "method": "post",
+      "title": "Add comment"
+    },
+    "previewMarkup": {
+      "href": "/api/v3/render/markdown?context=/api/v3/work_packages/44",
+      "method": "post"
+    },
+    "timeEntries": {
+      "href": "/work_packages/44/time_entries",
+      "type": "text/html",
+      "title": "Time entries"
+    },
+    "category": {
+      "href": null
+    },
+    "type": {
+      "href": "/api/v3/types/1",
+      "title": "Order"
+    },
+    "priority": {
+      "href": "/api/v3/priorities/8",
+      "title": "Normal"
+    },
+    "project": {
+      "href": "/api/v3/projects/3",
+      "title": "PPE"
+    },
+    "status": {
+      "href": "/api/v3/statuses/1",
+      "title": "New"
+    },
+    "author": {
+      "href": "/api/v3/users/13",
+      "title": "Will Sonnex"
+    },
+    "responsible": {
+      "href": null
+    },
+    "assignee": {
+      "href": null
+    },
+    "version": {
+      "href": null
+    },
+    "logCosts": {
+      "href": "/work_packages/44/cost_entries/new",
+      "type": "text/html",
+      "title": "Log costs on Temp 1"
+    },
+    "showCosts": {
+      "href": "/work_packages/44/cost_entries",
+      "type": "text/html",
+      "title": "Show cost entries"
+    },
+    "costObject": {
+      "href": null
+    },
+    "costsByType": {
+      "href": "/api/v3/work_packages/44/summarized_costs_by_type"
+    },
+    "customField2": {
+      "title": "Primary Care",
+      "href": "/api/v3/custom_options/1"
+    },
+    "customField6": {
+      "title": "Staff are working without face shields",
+      "href": "/api/v3/custom_options/8"
+    },
+    "watch": {
+      "href": "/api/v3/work_packages/44/watchers",
+      "method": "post",
+      "payload": {
+        "user": {
+          "href": "/api/v3/users/17"
+        }
+      }
+    },
+    "children": [
+      {
+        "href": "/api/v3/work_packages/45",
+        "title": "Temp 1 - Face Shield - Batch 1"
+      }
+    ],
+    "ancestors": [],
+    "parent": {
+      "href": null,
+      "title": null
+    },
+    "customActions": []
+  }
+}

@@ -1,0 +1,9 @@
+---
+version: "3.7"
+services:
+  workpackage-manager:
+    build: "."
+    ports:
+      - "39586:39586"
+    volumes:
+      - "./config.yml:/app/config.yml"
