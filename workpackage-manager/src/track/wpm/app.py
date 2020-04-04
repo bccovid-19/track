@@ -32,6 +32,7 @@ with open(CONFIG_FILE, 'r') as f:
 openproject = OpenProjectClient(config)
 
 batched_fields = [BatchedField(**d) for d in config['fields']['batched']]
+logging.info('found batched fields {}'.format(batched_fields))
 
 app = Flask(__name__)
 
