@@ -14,9 +14,6 @@ fields:
     - name: Ear Savers
       open_project_key: customField9
       batch_size: 10
-  propagated:
-    - name: Urgency
-      open_project_key: customField6
 
 server:
   port: 39586
