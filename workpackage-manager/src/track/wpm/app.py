@@ -11,6 +11,7 @@ SUCCESS_RESPONSE = json.dumps({'success': True})
 ORDER_TYPE_ID = 1
 PRODUCTION_ORDER_TYPE_ID = 4
 CONFIRMED_STATUS_ID = 4
+PPE_PROJECT_ID = 4
 
 
 class BatchedField(NamedTuple):
@@ -61,6 +62,7 @@ def create_production_order(parent_id: int, order: Order):
     spec = WorkPackageSpec(
         subject=order.subject,
         type_id=PRODUCTION_ORDER_TYPE_ID,
+        project_id=PPE_PROJECT_ID,
         parent_id=parent_id,
         extra_fields=order.quantities
     )
