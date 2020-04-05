@@ -4,11 +4,12 @@ import yaml
 from typing import NamedTuple, Dict, List, Iterator
 import math
 import os
+from pathlib import Path
 
 from track.wpm.open_project import OpenProjectClient, WorkPackageSpec
 
 OPENPROJECT_URL = 'https://track.bcc3d.ca'
-API_KEY = os.environ['OPENPROJECT_API_KEY']
+API_KEY = Path('api_key.txt').read_text()
 CONFIG_FILE = 'config.yml'
 SUCCESS_RESPONSE = json.dumps({'success': True})
 ORDER_TYPE_ID = 1
@@ -16,7 +17,7 @@ PRODUCTION_ORDER_TYPE_ID = 4
 CONFIRMED_STATUS_ID = 4
 PPE_PROJECT_ID = 3
 
-assert len(API_KEY) > 10, "API key seems invalid, too short"
+assert len(API_KEY) > 40, "API key seems invalid, too short"
 
 
 class BatchedField(NamedTuple):
