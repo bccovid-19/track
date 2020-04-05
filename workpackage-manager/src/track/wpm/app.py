@@ -3,15 +3,20 @@ import logging
 import yaml
 from typing import NamedTuple, Dict, List, Iterator
 import math
+import os
 
 from track.wpm.open_project import OpenProjectClient, WorkPackageSpec
 
+OPENPROJECT_URL = 'https://track.bcc3d.ca'
+API_KEY = os.environ['OPENPROJECT_API_KEY']
 CONFIG_FILE = 'config.yml'
 SUCCESS_RESPONSE = json.dumps({'success': True})
 ORDER_TYPE_ID = 1
 PRODUCTION_ORDER_TYPE_ID = 4
 CONFIRMED_STATUS_ID = 4
 PPE_PROJECT_ID = 3
+
+assert len(API_KEY) > 10, "API key seems invalid, too short"
 
 
 class BatchedField(NamedTuple):
@@ -30,7 +35,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 with open(CONFIG_FILE, 'r') as f:
     config = yaml.safe_load(f)
 
-openproject = OpenProjectClient(config)
+openproject = OpenProjectClient(url=OPENPROJECT_URL, api_key=API_KEY)
 
 batched_fields = [BatchedField(**d) for d in config['fields']['batched']]
 logging.info('found batched fields {}'.format(batched_fields))
@@ -43,7 +48,6 @@ def create_batched_sub_orders(super_order: Order, existing_sub_orders: List[Orde
     default_quantities = {k: 0 for k in all_keys}
     for batched_field in batched_fields:
         key = batched_field.open_project_key
-        other_keys = [k for k in all_keys if k != key]
         batch_size = batched_field.batch_size
         required = super_order.quantities[key]
         existing = sum([existing.quantities[key] for existing in existing_sub_orders])

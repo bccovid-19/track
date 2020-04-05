@@ -7,3 +7,10 @@ services:
       - "39586:39586"
     volumes:
       - "./config.yml:/app/config.yml"
+    environment:
+      OPENPROJECT_API_KEY: /run/secrets/openproject_api_key
+    secrets:
+      - openproject_api_key
+secrets:
+  openproject_api_key:
+    file: api_key.txt

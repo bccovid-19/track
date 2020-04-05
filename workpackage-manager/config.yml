@@ -1,8 +1,4 @@
 ---
-open_project_api:
-  key: 5c0a6bc1789cd2b36e771ef3b6597530a718a835285b147e051fb508fd4b2a3c
-  url: https://track.bcc3d.ca
-
 fields:
   batched:
     - name: Face Shield Frame
