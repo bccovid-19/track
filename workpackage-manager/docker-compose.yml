@@ -6,11 +6,5 @@ services:
     ports:
       - "39586:39586"
     volumes:
+      - "./api_key.txt:/app/api_key.txt"
       - "./config.yml:/app/config.yml"
-    environment:
-      OPENPROJECT_API_KEY: /run/secrets/openproject_api_key
-    secrets:
-      - openproject_api_key
-secrets:
-  openproject_api_key:
-    file: api_key.txt
