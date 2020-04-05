@@ -3,7 +3,6 @@ version: "3.7"
 
 networks:
   openproject:
-  stack:
 
 volumes:
   op-pg-data:
@@ -27,37 +26,14 @@ x-op-app: &op-app
     - op-cache
 
 services:
-  ## SSL and general security
-  # Don't start this section if you're developing locally and just connect to stack-nginx on localhost:8080
+  ## Reverse proxy which serves all applications
   public-nginx:
     image: nginx:1.17.9
     ports:
-      - "80:80"
-      - "443:443"
+      - "19000:80"
     volumes:
       - ./config/public-nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./data/public-certbot/conf:/etc/letsencrypt
-      - ./data/public-certbot/www:/var/www/certbot
     networks:
-      - stack
-    depends_on:
-      - stack-nginx
-
-  public-certbot:
-    image: certbot/certbot:v1.3.0
-    volumes:
-      - ./data/public-certbot/conf:/etc/letsencrypt
-      - ./data/public-certbot/www:/var/www/certbot
-
-  ## Reverse proxy which serves all applications
-  stack-nginx:
-    image: nginx:1.17.9
-    ports:
-      - "8080:80"
-    volumes:
-      - ./config/stack-nginx.conf:/etc/nginx/nginx.conf:ro
-    networks:
-      - stack
       - openproject
     depends_on:
       - op-proxy
