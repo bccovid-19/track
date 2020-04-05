@@ -9,7 +9,7 @@ from pathlib import Path
 from track.wpm.open_project import OpenProjectClient, WorkPackageSpec
 
 OPENPROJECT_URL = 'https://track.bcc3d.ca'
-API_KEY = Path('api_key.txt').read_text()
+API_KEY = Path('api_key.txt').read_text().strip()
 CONFIG_FILE = 'config.yml'
 SUCCESS_RESPONSE = json.dumps({'success': True})
 ORDER_TYPE_ID = 1
