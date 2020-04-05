@@ -46,6 +46,7 @@ class OpenProjectClient:
     def __init__(self, url: str, api_key: str):
         self.api_url = url
         self.auth = HTTPBasicAuth(username='apikey', password=api_key)
+        logging.info('api_key {}'.format(api_key))
 
     def get(self, path: str):
         url = '{}{}'.format(self.api_url, path)
