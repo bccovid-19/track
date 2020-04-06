@@ -47,7 +47,7 @@ services:
     volumes:
       - "op-pg-data:/var/lib/postgresql/data"
       # For dumping DB state to
-      - "./data/op-db:/data"
+      - "../data/op-db:/data"
     environment:
       - POSTGRES_PASSWORD=p4ssw0rd
       - POSTGRES_DB=openproject
