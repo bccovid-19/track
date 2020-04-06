@@ -5,7 +5,7 @@
 ./data
 
 # Output of templating engine
-./build
+./config
 ./docker-compose.yml
 
 # Secret keys
