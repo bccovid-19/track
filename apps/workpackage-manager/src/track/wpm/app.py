@@ -8,7 +8,7 @@ from pathlib import Path
 
 from track.wpm.open_project import OpenProjectClient, WorkPackageSpec
 
-OPENPROJECT_URL = 'http://op-web'
+OPENPROJECT_URL = 'http://op-web:8080'
 API_KEY = Path('api_key.txt').read_text().strip()
 CONFIG_FILE = 'config.yml'
 SUCCESS_RESPONSE = json.dumps({'success': True})
