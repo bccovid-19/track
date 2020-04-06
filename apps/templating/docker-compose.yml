@@ -6,4 +6,4 @@ services:
     volumes:
       - ../../config.yml:/app/config.yml
       - ../../templates:/app/templates
-      - ../../build:/app/build
+      - ../..:/app/build
