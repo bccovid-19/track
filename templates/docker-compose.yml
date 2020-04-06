@@ -33,7 +33,7 @@ services:
       - "{{ proxyPort }}:80"
     volumes:
       - ./config/apps-nginx.conf:/etc/nginx/nginx.conf
-      - ./config/apps-nginx-include.conf:/etc/nginx/nginx-include.conf
+      - ./config/apps-nginx-include.conf:/etc/nginx/apps-nginx-include.conf
     networks:
       - openproject
     depends_on:
