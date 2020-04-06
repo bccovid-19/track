@@ -3,6 +3,7 @@ version: "3.7"
 
 networks:
   openproject:
+  apps:
 
 volumes:
   op-pg-data:
@@ -35,9 +36,18 @@ services:
       - ./config/apps-nginx.conf:/etc/nginx/nginx.conf
       - ./config/apps-nginx-include.conf:/etc/nginx/apps-nginx-include.conf
     networks:
-      - openproject
+      - apps
     depends_on:
       - op-web
+
+  ## App that does workflow automation for OpenProject
+  workpackage-manager:
+    build: "."
+    volumes:
+      - "./config/api_key.txt:/app/api_key.txt"
+      - "./config/workpackage-manager.yml:/app/config.yml"
+    network:
+      - apps
 
   ## OpenProject stack (https://github.com/opf/openproject/blob/dev/docker-compose.yml)
   op-db:
@@ -65,6 +75,7 @@ services:
     command: "./docker/web"
     networks:
       - openproject
+      - apps
 
   op-worker:
     <<: *op-app
