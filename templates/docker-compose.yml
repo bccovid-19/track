@@ -46,7 +46,7 @@ services:
     volumes:
       - "./config/api_key.txt:/app/api_key.txt"
       - "./config/workpackage-manager.yml:/app/config.yml"
-    network:
+    networks:
       - apps
 
   ## OpenProject stack (https://github.com/opf/openproject/blob/dev/docker-compose.yml)
