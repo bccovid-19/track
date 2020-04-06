@@ -10,3 +10,6 @@
 
 # Secret keys
 **/api_key.txt
+
+# Per-deployment config
+./config.yml
