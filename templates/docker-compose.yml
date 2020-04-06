@@ -43,6 +43,8 @@ services:
   ## App that does workflow automation for OpenProject
   workpackage-manager:
     build: ../apps/workpackage-manager/.
+    expose:
+      - 80
     volumes:
       - "./config/api_key.txt:/app/api_key.txt"
       - "./config/workpackage-manager.yml:/app/config.yml"
