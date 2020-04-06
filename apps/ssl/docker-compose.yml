@@ -19,3 +19,5 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     command: "certonly --webroot -w /var/www/html --email admin@bcc3d.ca --agree-tos --no-eff-email -d track.bcc3d.ca -d qa.track.bcc3d.ca"
+    depends_on:
+      - nginx
