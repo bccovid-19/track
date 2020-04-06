@@ -1,0 +1,100 @@
+---
+version: "3.7"
+
+networks:
+  openproject:
+  apps:
+
+volumes:
+  op-pg-data:
+  op-assets-data:
+
+x-op-app: &op-app
+  image: &op-image openproject/community:10.4.0
+  restart: unless-stopped
+  environment:
+    - "RAILS_CACHE_STORE=memcache"
+    - "OPENPROJECT_CACHE__MEMCACHE__SERVER=op-cache:11211"
+    - "OPENPROJECT_RAILS__RELATIVE__URL__ROOT=${OPENPROJECT_RAILS__RELATIVE__URL__ROOT:-}"
+    - "DATABASE_URL=postgres://postgres:p4ssw0rd@op-db/openproject"
+    - "USE_PUMA=true"
+    # set to true to enable the email receiving feature. See ./docker/cron for more options
+    - "IMAP_ENABLED=false"
+  volumes:
+    - "op-assets-data:/var/openproject/assets"
+  depends_on:
+    - op-db
+    - op-cache
+
+services:
+  ## Reverse proxy which serves all applications
+  apps-nginx:
+    image: nginx:1.17.9
+    ports:
+      - "{{ proxyPort }}:80"
+    volumes:
+      - ./config/apps-nginx.conf:/etc/nginx/nginx.conf
+      - ./config/apps-nginx-include.conf:/etc/nginx/apps-nginx-include.conf
+    networks:
+      - apps
+    depends_on:
+      - op-web
+
+  ## App that does workflow automation for OpenProject
+  workpackage-manager:
+    build: ../apps/workpackage-manager/.
+    expose:
+      - 80
+    volumes:
+      - "./config/api_key.txt:/app/api_key.txt"
+      - "./config/workpackage-manager.yml:/app/config.yml"
+    networks:
+      - apps
+
+  ## OpenProject stack (https://github.com/opf/openproject/blob/dev/docker-compose.yml)
+  op-db:
+    image: postgres:10
+    restart: unless-stopped
+    stop_grace_period: "3s"
+    volumes:
+      - "op-pg-data:/var/lib/postgresql/data"
+      # For dumping DB state to
+      - "../data/op-db:/data"
+    environment:
+      - POSTGRES_PASSWORD=p4ssw0rd
+      - POSTGRES_DB=openproject
+    networks:
+      - openproject
+
+  op-cache:
+    image: memcached
+    restart: unless-stopped
+    networks:
+      - openproject
+
+  op-web:
+    <<: *op-app
+    command: "./docker/web"
+    networks:
+      - openproject
+      - apps
+
+  op-worker:
+    <<: *op-app
+    command: "./docker/worker"
+    networks:
+      - openproject
+      - apps
+
+  op-cron:
+    <<: *op-app
+    command: "./docker/cron"
+    networks:
+      - openproject
+
+  op-seeder:
+    <<: *op-app
+    command: "./docker/seeder"
+    restart: on-failure
+    networks:
+      - openproject

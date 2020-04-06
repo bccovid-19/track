@@ -1,0 +1,12 @@
+# IntelliJ project files
+**/.idea
+
+# Local data mounts for docker containers
+./data
+
+# Output of templating engine
+./build
+./docker-compose.yml
+
+# Secret keys
+**/api_key.txt

@@ -1,0 +1,29 @@
+---
+# Adding SSL termination to our stack
+version: "3.7"
+
+services:
+  nginx:
+    image: nginx:1.17
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx-include.conf:/etc/nginx/nginx-include.conf
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    network_mode: host
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    command: >
+      certonly
+        --webroot
+        -n
+        -w /var/www/certbot
+        --email admin@bcc3d.ca
+        --agree-tos
+        --no-eff-email
+        -d track.bcc3d.ca -d qa.track.bcc3d.ca
+    network_mode: host

@@ -12,4 +12,4 @@ fields:
       batch_size: 10
 
 server:
-  port: 39586
+  port: 80
