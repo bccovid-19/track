@@ -37,7 +37,7 @@ services:
     networks:
       - openproject
     depends_on:
-      - op-proxy
+      - op-web
 
   ## OpenProject stack (https://github.com/opf/openproject/blob/dev/docker-compose.yml)
   op-db:
@@ -57,17 +57,6 @@ services:
   op-cache:
     image: memcached
     restart: unless-stopped
-    networks:
-      - openproject
-
-  op-proxy:
-    image: *op-image
-    command: "./docker/proxy"
-    environment:
-      - APP_HOST=op-web
-      - "OPENPROJECT_RAILS__RELATIVE__URL__ROOT=${OPENPROJECT_RAILS__RELATIVE__URL__ROOT:-}"
-    depends_on:
-      - op-web
     networks:
       - openproject
 

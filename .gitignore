@@ -1,9 +1,9 @@
 # IntelliJ project files
-**/.idea/
+**/.idea
 
 # Local data mounts for docker containers
-./data/
+./data
 
 # Output of templating engine
-./build/
+./build
 ./docker-compose.yml
