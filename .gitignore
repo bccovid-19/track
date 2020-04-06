@@ -5,8 +5,11 @@
 ./data
 
 # Output of templating engine
-./build
+./config
 ./docker-compose.yml
 
 # Secret keys
 **/api_key.txt
+
+# Per-deployment config
+./config.yml
