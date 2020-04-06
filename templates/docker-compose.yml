@@ -27,12 +27,12 @@ x-op-app: &op-app
 
 services:
   ## Reverse proxy which serves all applications
-  public-nginx:
+  apps-nginx:
     image: nginx:1.17.9
     ports:
       - "{{ proxyPort }}:80"
     volumes:
-      - ./config/public-nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./config/apps-nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
       - openproject
     depends_on:

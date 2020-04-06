@@ -6,3 +6,4 @@
 
 # Output of templating engine
 ./build/
+./docker-compose.yml
