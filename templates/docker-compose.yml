@@ -82,6 +82,7 @@ services:
     command: "./docker/worker"
     networks:
       - openproject
+      - apps
 
   op-cron:
     <<: *op-app
