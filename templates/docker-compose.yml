@@ -30,7 +30,7 @@ services:
   public-nginx:
     image: nginx:1.17.9
     ports:
-      - "19000:80"
+      - "{{ proxyPort }}:80"
     volumes:
       - ./config/public-nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
