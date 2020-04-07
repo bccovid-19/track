@@ -1,3 +1,7 @@
 ---
-hostname: qa.track.bcc3d.ca
+apps:
+  openproject:
+    hostname: qa.track.bcc3d.ca
+  bcc3d_ca:
+    hostname: www.track.bcc3d.ca
 proxyPort: 42310
