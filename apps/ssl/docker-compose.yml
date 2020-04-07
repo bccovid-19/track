@@ -25,5 +25,8 @@ services:
         --email admin@bcc3d.ca
         --agree-tos
         --no-eff-email
-        -d track.bcc3d.ca -d qa.track.bcc3d.ca
+        --expand
+        -d track.bcc3d.ca
+        -d qa.track.bcc3d.ca
+        -d www.track.bcc3d.ca
     network_mode: host
