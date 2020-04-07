@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% seo %}
+	{% feed_meta %}
+
+	<link rel="stylesheet" href="{{ site.baseurl }}/css/styles.css">
+    <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/img/favicon.png">
+
+    {% if jekyll.environment == 'production' and site.google_analytics_key != '' %}
+        <script>
+            window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+            ga('create', '{{ site.google_analytics_key }}', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <script async src='https://www.google-analytics.com/analytics.js'></script>
+	{% endif %}
+    <script src="https://kit.fontawesome.com/83f8958504.js" crossorigin="anonymous"></script>
+
+  </head>
+  <body data-spy="scroll" data-target="#table-of-contents" data-offset="0" >
+
+    <header>
+
+        <div class="container">
+
+            <nav class="navbar navbar-expand-lg navbar-dark ">
+
+                <a class="navbar-brand" href="{{ site.baseurl }}/">
+                    <img src="/assets/img/logo/PNG/bc3d-rectangle-inverted.png" alt="{{ site.title }}" height="75"  />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-main" aria-controls="navigation-main" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navigation-main">
+
+                    <ul class="navbar-nav ml-auto align-content-start">
+
+                        {% for link in site.data.navigation %}
+
+                            {% assign li_class = "" %}
+                            {% assign btn_class = "nav-link" %}
+                            {% if link.highlight %}
+                                {% assign li_class = li_class | append: "py-2 py-lg-0 pl-lg-2" %}
+                                {% assign btn_class = "btn btn-highlight" %}
+                            {% endif %}
+                            {% if link.link == page.url %}
+                                {% assign li_class = li_class | append: " active" %}
+                            {% endif %}
+
+                            <!-- {{ link.link }} == {{ page.url }} -->
+
+                            <li class="nav-item {{ li_class }}">
+                                <a class="{{ btn_class }}"  href="{% include relative-src.html src=link.link %}">{{ link.name }}</a>
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <article class="py-3">
+    {{ content}}
+    </article>
+
+    <footer id="footer" class="bg-dark text-light">
+
+        <div class="container pt-5 pb-1">
+
+            <ul class="contact-list mb-5">
+                <li><a class="text-white" href="/volunteers/getting-started">Volunteer Getting Started Guide</a></li>
+                <li><a class="text-white" href="/contact">Contact Us</a></li>
+            </ul>
+
+            <h6>DISCLAIMERS</h6>
+
+            <p class="thin-copy">
+                OUR PROJECT IS STRICTLY NOT-FOR-PROFIT. NO MONEY IS TO CHANGE HANDS. Our products are not to be sold or resold.
+                Our efforts are entirely supported by the hard work of our volunteers and the generosity of our donors, partners, and suppliers.
+            </p>
+
+            <p class="thin-copy">
+                THESE FACE SHIELDS ARE NOT APPROVED BY HEALTH CANADA AT THIS TIME. THEY SHOULD NOT BE CONSIDERED MEDICAL DEVICES.
+                They are produced in the community and intended to meet an urgent need. Use them at your own risk.
+            </p>
+
+            <p class="text-light mt-5">
+            &copy; 2020 BC COVID-19 3D PRINTING GROUP
+            </p>
+        </div>
+
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  </body>
+</html>

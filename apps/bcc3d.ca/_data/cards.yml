@@ -1,0 +1,27 @@
+- title: Healthcare Providers
+  img: /assets/img/card-hcp.jpg
+  body: >-
+    Please register your request for supplies on behalf of your
+    facility or department. Your request will be processed in a priority queue
+    subject to <b>item availability</b>, <b>facility type</b>, and <b>urgency of need</b>. Find
+    out more by following the link below.
+  cta: Request Equipment
+  url: /order/
+
+- title: Volunteers
+  img: /assets/img/face-shield-print.gif
+  body: >-
+    We need <b>3d printers</b>, <b>fabricators</b>, <b>couriers</b> and other talented
+    individuals to make this whole thing happen! Join our team
+    of more than 300 hard-working volunteers in our mission to support our
+    healthcare workers!
+  cta: Join The Team
+  url: /volunteers/
+
+- title: Donors / Sponsors
+  body: >-
+    We are in urgent need of <b>plexiglass</b>, <b>laminating sheets</b>, <b>PET-G sheets</b>,
+    <b>laser printer overhead transparencies</b> and other materials for use in production.
+    Our logistics team would love to hear from you ASAP if you can help.
+  cta: Contact Us
+  url: /contact/

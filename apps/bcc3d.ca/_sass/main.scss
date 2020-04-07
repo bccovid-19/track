@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@import "variables";
+@import "bootstrap/scss/bootstrap";
+@import "layout";
+@import "typography";
+
+
+.hero {
+    // background: linear-gradient(to bottom, $middle-gradient-color 0%, $brand-secondary-color 100%) no-repeat #a05fb7;
+    // url(/assets/img/bc-childrens-1.jpg) no-repeat
+    background:  $dark;
+    // background-blend-mode: multiply;
+
+    background-size: 100% auto;
+    background-position: center 60%;
+    color: $light;
+}
+
+.bg-600 {
+    background-color: $gray-600;
+}
+
+.btn-highlight {
+    // font-family: $headings-font-family;
+    // font-size: 0.8em;
+    text-transform: uppercase;
+    background-color: rgba($brand-accent-color, 0.75);
+    color: white;
+
+    &:hover {
+        background-color: $brand-accent-color;
+        color: white;
+    }
+}
+
+.home-cards {
+
+    .home-card {
+
+        height: 100%;
+        padding: 15px;
+        position: relative;
+
+        background-position: 50% 50%;
+        background-size: 100%;
+        // border: 1px solid $dark;
+
+        .overlay {
+            position: absolute;
+            z-index: 9;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            // background-color: rgba($gray-900, 0.7);
+            background: $gray-700;
+            transition: background 0.1s ease-in-out;
+        }
+
+        .home-card-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            z-index: 10;
+            color: $gray-400;
+            transition: color 0.1s ease-in-out;
+        }
+
+        // color: $light !important;
+        transition: border-color 0.15s ease-in-out;
+        transition: height 0.15s ease-in-out, padding 0.15s ease-in-out, margin 0.15s ease-in-out;
+        // transition: background-size 0.5s ease-in-out;
+
+        .btn {
+            // position: relative;
+            // top: 0;
+            // transition: top 0.15s ease-in-out;
+        }
+
+        &:hover {
+            z-index: 1000;
+            height: calc(100% + 2px);
+            margin: -1px;
+            padding: 16px;
+
+            // background-size: 103%;
+            // border-color: #AAA;
+
+            .overlay {
+                background: #555;
+                // background: linear-gradient(
+                //     to bottom,
+                //     rgba($gray-600, 0.5) 0%,
+                //     rgba($gray-700, 1) 100%
+
+                // ) no-repeat;
+
+            }
+            .home-card-content {
+                color: white !important;
+            }
+            .btn {
+                border: 1px solid $light;
+            }
+
+        }
+    }
+}
+
+.sponsors {
+
+    // justify-content: center;
+    // flex-wrap: wrap;
+
+    .sponsor {
+
+        display: block;
+        margin: 16px;
+        height: 50px;
+        text-align: center;
+
+        // flex-basis is 0 for equal widths
+        // flex: 1 1 0;
+        img {
+            height: 48px;
+        }
+    }
+}
+
+.image-grid {
+    height: 240px;
+    width: 100%;
+    margin: 0 -1px;
+
+
+    img {
+        margin: 0 1px;
+        flex-basis: percentage(1.0/3);
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+
+.getting-started {
+    h5 {
+        padding-top: $spacer * 2;
+        color: $primary;
+    }
+}
+
+.contact-list {
+    margin-bottom: $spacer;
+    list-style: none;
+    padding: 0;
+    li {
+        padding: 0;
+    }
+}

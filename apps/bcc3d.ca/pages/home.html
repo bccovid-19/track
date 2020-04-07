@@ -1,0 +1,109 @@
+---
+title: BC Covid-19 3D Printing Group
+description: We're printing crowd-sourced PPE for British Columbia's healthcare providers and first responders.
+layout: default
+permalink: /
+---
+
+<div class="hero jumbotron jumbotron-fluid  mt-n3">
+  <div class="container">
+    <h1 class="display-5">Free personal protective equipment for British Columbia's healthcare providers and first responders.</h1>
+    <p class="lead">
+      BC Covid-19 3D Printing Group is a grassroots, volunteer-based organization dedicated to stemming the shortage of PPE for professionals who are serving on the front lines in the fight against COVID-19.
+    </p>
+
+    {% comment %} <p class="lead">
+        We match our 3D printers and digital fabrication volunteers with immediate demand from healthcare professionals anywhere in BC.
+    </p> {% endcomment %}
+
+    <div class="home-cards row mt-5">
+
+      {% for card in site.data.cards %}
+      <div class="col-md-4">
+      <div class="home-card">
+      {% comment %} style="background-image: url({{ card.img }});" {% endcomment %}
+
+        <div class="overlay"></div>
+        <div class="home-card-content">
+          <div class="mb-auto">
+            <h4>{{ card.title }}</h4>
+            <p class="thin-copy">{{ card.body }}</p>
+          </div>
+          <div class="text-left">
+            <a class="btn btn-highlight" href="{{ card.url }}">{{ card.cta }}</a>
+          </div>
+        </div>
+      </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+<section class="section-sponsors bg-primary mt-n5 pb-3">
+<div class="container">
+
+  <p class="text-center text-light pt-4">SPECIAL THANKS TO OUR GENEROUS SPONSORS</p>
+
+  <div class="d-md-flex sponsors flex-wrap justify-content-center">
+    {% for sponsor in site.data.sponsors %}
+    <a class="sponsor" href="{{ sponsor.url }}" >
+      <img src="{{ sponsor.img }}" alt="{{ sponsor.name }}" />
+    </a>
+    {% endfor %}
+  </div>
+</div>
+</section>
+
+
+<section class="products container py-5">
+
+  <h2 class="text-primary">Our Current Offerings</h2>
+
+
+  <div class="media py-3">
+
+    <a href="/products/face-shields/">
+      <img class="bg-dark mr-3" height="175" src="/assets/img/products/face-shield-1-sq.jpg">
+    </a>
+
+    <div class="media-body">
+
+      <h3>3DVERKSTAN Face Shields</h3>
+
+      <p>
+        A proven face shield design that has been tested by medical personel all around the world. Each face shield consists of a <b>frame</b> and <b>visor</b>, both intended to be sterilized and reusable. Assembly is simple and takes only seconds.
+      </p>
+
+      <p class="text-muted mt-n3"><i>3DV face shields are not currently approved by Health Canada. Please review our <a href="#footer">disclaimers</a> below.</i></p>
+
+      <p>
+        <a class="btn btn-primary" href="/products/face-shields/">3DV Face Shield Specifications</a>
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="media  py-3">
+
+    <a href="/products/ear-savers/">
+      <img class="bg-dark mr-3" height="175" src="/assets/img/products/ear-saver-1-sq.jpg">
+    </a>
+
+    <div class="media-body">
+
+      <h3>Ear Savers (Surgical Mask Straps)</h3>
+
+      <p>Surgical masks with elastic earloops can cause discomfort to the wearer's ears. These straps hold the elastics in place and greatly reduce the stress and discomfort associated with wearing masks for extended periods.
+      </p>
+
+      <p>
+        <a class="btn btn-primary" href="/products/ear-savers/">Ear Saver Specifications</a>
+      </p>
+
+    </div>
+  </div>
+
+</section>
