@@ -185,10 +185,7 @@ def hcp_submit():
     order = HCPSubmission(**req_json)
     logging.info('Received order: {}'.format(order))
     submit_hcp_order(order)
-    response = app.make_response(SUCCESS_RESPONSE)
-    # add open CORS header
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    return response
+    return SUCCESS_RESPONSE
 
 
 if __name__ == '__main__':
