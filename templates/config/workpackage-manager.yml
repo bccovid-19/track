@@ -13,3 +13,5 @@ fields:
 
 server:
   port: 80
+
+openProjectUrl: http://op-web:8080

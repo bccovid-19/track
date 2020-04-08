@@ -1,7 +1,10 @@
 ---
 apps:
   openproject:
-    hostname: qa.track.bcc3d.ca
+    hostname: track.local.bcc3d.ca
   bcc3d_ca:
-    hostname: www.track.bcc3d.ca
-proxyPort: 42310
+    hostname: www.local.bcc3d.ca
+  wpm:
+    hostname: wpm.local.bcc3d.ca
+
+proxyPort: 80
