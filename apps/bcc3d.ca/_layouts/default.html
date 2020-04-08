@@ -77,8 +77,14 @@
 
         <div class="container pt-5 pb-1">
 
+            <div class="pb-3">
+                {% for social in site.data.socials %}
+                <a class="mr-3 text-white" href="{{ social.link }}" alt="{{ social.name }}"><i class="{{ social.icon }}"></i></a>
+                {% endfor %}
+            </div>
+
             <ul class="contact-list mb-5">
-                <li><a class="text-white" href="/volunteers/getting-started">Volunteer Getting Started Guide</a></li>
+                {% comment %} <li><a class="text-white" href="/volunteers/getting-started">Volunteer Getting Started Guide</a></li> {% endcomment %}
                 <li><a class="text-white" href="/contact">Contact Us</a></li>
             </ul>
 
