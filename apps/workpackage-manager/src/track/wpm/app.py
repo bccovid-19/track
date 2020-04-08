@@ -8,7 +8,6 @@ from pathlib import Path
 
 from track.wpm.open_project import OpenProjectClient, WorkPackageSpec
 
-OPENPROJECT_URL = 'http://op-web:8080'
 API_KEY = Path('api_key.txt').read_text().strip()
 CONFIG_FILE = 'config.yml'
 SUCCESS_RESPONSE = json.dumps({'success': True})
@@ -16,6 +15,31 @@ ORDER_TYPE_ID = 1
 PRODUCTION_ORDER_TYPE_ID = 4
 CONFIRMED_STATUS_ID = 4
 PPE_PROJECT_ID = 3
+FACE_SHIELD_FRAMES_FIELD_ID = 'customField7'
+VISORS_FIELD_ID = 'customField8'
+EAR_SAVERS_FIELD_ID = 'customField9'
+CONTACT_NAME_FIELD_ID = 'customField4'
+CONTACT_PHONE_FIELD_ID = 'customField5'
+FACILITY_TYPE_FIELD_ID = 'customField2'
+URGENCY_FIELD_ID = 'customField6'
+FACILITY_NAME_FIELD_ID = 'customField1'
+FACILITY_ADDRESS_FIELD_ID = 'customField3'
+
+FACILITY_TYPE_OPTION_IDS = {name: i + 1 for i, name in enumerate([
+    'Primary Care',
+    'Nursing Home',
+    'Specialist',
+    'Hospital',
+    'Health Authority / Other Organization',
+    'Pharmacy',
+    'Other'
+])}
+
+URGENCY_OPTION_IDS = {
+    1: 8,
+    2: 9,
+    3: 10
+}
 
 assert len(API_KEY) > 40, "API key seems invalid, too short"
 
@@ -31,17 +55,57 @@ class Order(NamedTuple):
     quantities: Dict[str, int]
 
 
+class HCPSubmission(NamedTuple):
+    facilityName: str
+    facilityAddress: str
+    contactName: str
+    contactPhone: str
+
+    requestFaceShieldFrames: int
+    requestVisors: int
+    requestEarSavers: int
+
+    # 1 means "Staff are working without face shields", 3 means "Still have adequate stock available"
+    requestUrgency: int
+
+    # Must be one of: Primary Care | Nursing Home | Specialist | Hospital | Health Authority / Other Organization | Pharmacy | Other
+    facilityType: str
+
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 with open(CONFIG_FILE, 'r') as f:
     config = yaml.safe_load(f)
 
-openproject = OpenProjectClient(url=OPENPROJECT_URL, api_key=API_KEY)
+openproject = OpenProjectClient(url=config['openProjectUrl'], api_key=API_KEY)
 
 batched_fields = [BatchedField(**d) for d in config['fields']['batched']]
 logging.info('found batched fields {}'.format(batched_fields))
 
 app = Flask(__name__)
+
+
+def submit_hcp_order(d: HCPSubmission):
+    total_items = d.requestFaceShieldFrames + d.requestVisors + d.requestEarSavers
+    spec = WorkPackageSpec(
+        type_id=ORDER_TYPE_ID,
+        subject='{} items for {}'.format(total_items, d.facilityName),
+        project_id=PPE_PROJECT_ID,
+        extra_fields={
+            FACE_SHIELD_FRAMES_FIELD_ID: d.requestFaceShieldFrames,
+            VISORS_FIELD_ID: d.requestVisors,
+            EAR_SAVERS_FIELD_ID: d.requestEarSavers,
+            CONTACT_NAME_FIELD_ID: d.contactName,
+            CONTACT_PHONE_FIELD_ID: d.contactPhone,
+            FACILITY_ADDRESS_FIELD_ID: d.facilityAddress,
+            FACILITY_NAME_FIELD_ID: d.facilityName
+        },
+        extra_links={
+            URGENCY_FIELD_ID: "custom_options/{}".format(URGENCY_OPTION_IDS[d.requestUrgency]),
+            FACILITY_TYPE_FIELD_ID: "custom_options/{}".format(FACILITY_TYPE_OPTION_IDS[d.facilityType])
+        }
+    )
+    return openproject.create_work_package(spec)
 
 
 def create_batched_sub_orders(super_order: Order, existing_sub_orders: List[Order]) -> Iterator[Order]:
@@ -103,6 +167,15 @@ def update():
         update_work_package(wp_id)
     else:
         logging.warning('unrecognised request {}'.format(json.dumps(req_json)))
+    return SUCCESS_RESPONSE
+
+
+@app.route('/hcp/submit', methods=['POST'])
+def hcp_submit():
+    req_json = request.get_json()
+    order = HCPSubmission(**req_json)
+    logging.info('Received order: {}'.format(order))
+    submit_hcp_order(order)
     return SUCCESS_RESPONSE
 
 
