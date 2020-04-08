@@ -72,7 +72,8 @@ class HCPSubmission(NamedTuple):
     facilityType: str
 
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 with open(CONFIG_FILE, 'r') as f:
     config = yaml.safe_load(f)
@@ -102,7 +103,8 @@ def submit_hcp_order(d: HCPSubmission):
         },
         extra_links={
             URGENCY_FIELD_ID: "custom_options/{}".format(URGENCY_OPTION_IDS[d.requestUrgency]),
-            FACILITY_TYPE_FIELD_ID: "custom_options/{}".format(FACILITY_TYPE_OPTION_IDS[d.facilityType])
+            FACILITY_TYPE_FIELD_ID: "custom_options/{}".format(
+                FACILITY_TYPE_OPTION_IDS[d.facilityType])
         }
     )
     return openproject.create_work_package(spec)
@@ -115,9 +117,12 @@ def create_batched_sub_orders(super_order: Order, existing_sub_orders: List[Orde
         key = batched_field.open_project_key
         batch_size = batched_field.batch_size
         required = super_order.quantities[key]
-        existing = sum([existing.quantities[key] for existing in existing_sub_orders])
-        new_batches = math.ceil(max(0, required - existing) / batched_field.batch_size)
-        subject = '{} - {} x{}'.format(super_order.subject, batched_field.name, batch_size)
+        existing = sum([existing.quantities[key]
+                        for existing in existing_sub_orders])
+        new_batches = math.ceil(
+            max(0, required - existing) / batched_field.batch_size)
+        subject = '{} - {} x{}'.format(super_order.subject,
+                                       batched_field.name, batch_size)
         for _ in range(new_batches):
             yield Order(quantities={**default_quantities, key: batch_size}, subject=subject)
 
@@ -147,11 +152,13 @@ def update_work_package(work_package_id):
     linked_fields = wp['_embedded']
     if linked_fields['type']['id'] == ORDER_TYPE_ID and linked_fields['status']['id'] == CONFIRMED_STATUS_ID:
         wp_order = parse_order(wp)
-        logging.info('{} is a confirmed order: {}'.format(work_package_id, wp_order))
+        logging.info('{} is a confirmed order: {}'.format(
+            work_package_id, wp_order))
         existing_children = openproject.get_children(wp)
         existing_orders = [parse_order(child) for child in existing_children]
         logging.info('found existing batches: {}'.format(existing_orders))
-        new_batches = list(create_batched_sub_orders(wp_order, existing_orders))
+        new_batches = list(create_batched_sub_orders(
+            wp_order, existing_orders))
         logging.info('new batches required: {}'.format(new_batches))
         for order in new_batches:
             create_production_order(work_package_id, order)
@@ -176,7 +183,10 @@ def hcp_submit():
     order = HCPSubmission(**req_json)
     logging.info('Received order: {}'.format(order))
     submit_hcp_order(order)
-    return SUCCESS_RESPONSE
+    response = app.make_response(SUCCESS_RESPONSE)
+    # add open CORS header
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 
 if __name__ == '__main__':
