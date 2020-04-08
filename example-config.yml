@@ -4,7 +4,6 @@ apps:
     hostname: track.local.bcc3d.ca
   bcc3d_ca:
     hostname: www.local.bcc3d.ca
-  wpm:
-    hostname: wpm.local.bcc3d.ca
 
+scheme: http
 proxyPort: 80
