@@ -23,11 +23,17 @@ permalink: /contact/
                 <li><i class="fad fa-envelope fa-fw"></i> <a href="mailto:trent.shumay@bcc3d.ca">Trent Shumay</a> (trent.shumay@bcc3d.ca)</a></li>
             </ul>
 
+            <h5>Social Media</h5>
+            <ul class="contact-list">
+                {% for social in site.data.socials %}
+                <li><a href="{{ social.link }}"><i class="{{ social.icon }} fa-fw"></i> {{ social.name }}</a></li>
+                {% endfor %}
+            </ul>
 
             <h5>Other Links</h5>
 
             <ul class="contact-list">
-                <li><a href="#" ><i class="fad fa-donate fa-fw"></i> Our Gofundme</a> (coming soon)</li>
+                <li><i class="fad fa-donate fa-fw"></i> <b>Our Gofundme</b> (coming soon)</li>
             </ul>
 
 
