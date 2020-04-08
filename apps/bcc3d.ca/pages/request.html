@@ -7,11 +7,11 @@ js: /assets/js/request.js
 
 urgencyOptions:
   - id: 1
-    label: Critical (Staff are working without face shields)
+    label: Staff are working without face shields
   - id: 2
-    label: Urgent (Face shields expected to run out in days)
+    label: Face shields expected to run out in days
   - id: 3
-    label: Semiurgent (Still have adequate stock for now)
+    label: Still have adequate stock for now
 
 facilityOptions:
   - id: 1
@@ -68,19 +68,19 @@ facilityOptions:
         <div class="row">
             <div class="col form-group">
             <label for="requestFaceShieldFrames">Face Shield Frames</label>
-            <input name="requestFaceShieldFrames" id="requestFaceShieldFrames" type="number" class="form-control" value="0" required>
+            <input name="requestFaceShieldFrames" id="requestFaceShieldFrames" type="number" class="form-control" value="0" min="0" required>
             {% comment %} <small id="requestFaceShieldFramesHelp" class="form-text text-muted">...</small> {% endcomment %}
             </div>
 
             <div class="col form-group">
             <label for="requestVisors">Face Shield Visors</label>
-            <input name="requestVisors" id="requestVisors" type="number" class="form-control" value="0" required>
+            <input name="requestVisors" id="requestVisors" type="number" class="form-control" value="0" min="0" required>
             {% comment %} <small id="requestVisorsHelp" class="form-text text-muted">...</small> {% endcomment %}
             </div>
 
             <div class="col form-group">
             <label for="requestEarSavers">Ear Savers</label>
-            <input name="requestEarSavers" id="requestEarSavers" type="number" class="form-control" value="0" required>
+            <input name="requestEarSavers" id="requestEarSavers" type="number" class="form-control" value="0" min="0" required>
             {% comment %} <small id="requestEarSaversHelp" class="form-text text-muted">...</small> {% endcomment %}
             </div>
         </div>
