@@ -1,6 +1,5 @@
 $(function(){
 
-    console.log('Ready!');
     $('.form-request').on('submit', function(ev) {
 
         var form = this;
@@ -21,15 +20,20 @@ $(function(){
 
         console.log(data);
 
-        // post it up.
-        var jqxhr = $.post( "https://qa.track.bcc3d.ca/hcp/submit", function() {
-            console.log('Success.')
-        })
-        .done(function() {
-            window.location = form.action;
+        $.ajax({
+            type: 'POST',
+            url: 'https://qa.track.bcc3d.ca/hcp/submit',
+            data: JSON.stringify(data),
+            success: function(data) {
+                console.log('Success.')
+                window.location = form.action;
+            },
+            contentType: 'application/json',
+            dataType: 'json'
         })
         .fail(function() {
             alert( "There was an error with your submission." );
         });
-    })
+
+    });
 });
