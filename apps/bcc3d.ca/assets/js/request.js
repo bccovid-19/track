@@ -11,10 +11,10 @@ $(function(){
             facilityAddress: this.facilityAddress.value,
             contactName: this.contactName.value,
             contactPhone: this.contactPhone.value,
-            requestFaceShieldFrames: this.requestFaceShieldFrames.value,
-            requestVisors: this.requestVisors.value,
-            requestEarSavers: this.requestEarSavers.value,
-            requestUrgency: this.requestUrgency.value,
+            requestFaceShieldFrames: parseInt(this.requestFaceShieldFrames.value) || 0,
+            requestVisors: parseInt(this.requestVisors.value) || 0,
+            requestEarSavers: parseInt(this.requestEarSavers.value) || 0,
+            requestUrgency: parseInt(this.requestUrgency.value) || 1,
             facilityType: this.facilityType.value,
         }
 
