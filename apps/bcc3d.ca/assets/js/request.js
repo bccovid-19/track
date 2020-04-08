@@ -1,3 +1,6 @@
+---
+---
+
 $(function(){
 
     $('.form-request').on('submit', function(ev) {
@@ -22,10 +25,10 @@ $(function(){
 
         $.ajax({
             type: 'POST',
-            url: 'https://qa.track.bcc3d.ca/hcp/submit',
+            url: '{{ site.endpoints.hcp_submit }}',
             data: JSON.stringify(data),
             success: function(data) {
-                console.log('Success.')
+                console.log('Success.');
                 window.location = form.action;
             },
             contentType: 'application/json',

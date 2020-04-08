@@ -24,7 +24,7 @@ for tmpl_file_name in glob('{}/**'.format(TEMPLATE_DIR), recursive=True):
     suffix = suffix[1:]
     assert(len(prefix) == 0)
     target_file_name = os.path.join(TARGET_DIR, suffix)
-    tmpl = tmpl_env.get_template(tmpl_file_name.replace('\\', '/'))
-    print('Templating {} to {}'.format(tmpl_file_name, target_file_name))
+    tmpl = tmpl_env.get_template(tmpl_file_name)
+    print('Templating {} to {}'.format(tmpl_file_name, target_file_name), flush=True)
     os.makedirs(os.path.dirname(target_file_name), exist_ok=True)
     tmpl.stream(**template_vars).dump(target_file_name)

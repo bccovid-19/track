@@ -1,3 +1,4 @@
+{% raw %}
 # Welcome to Jekyll!
 #
 # This config file is meant for settings that affect your whole blog, values
@@ -17,6 +18,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
+{% endraw %}
 
 title: BC Covid-19 3D Printing Group
 
@@ -28,10 +30,13 @@ description: >- # this means to ignore newlines until "baseurl:"
   immediate demand from healthcare professionals.
 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://bcc3d.ca"
+url: "{{ scheme }}://{{ apps.bcc3d_ca.hostname }}"
 # twitter_username: jekyllrb
 # github_username:  jekyll
 google_analytics_key:
+
+endpoints:
+  hcp_submit: "{{ scheme }}://{{ apps.openproject.hostname }}/hcp/submit"
 
 # Build settings
 # theme: minima
