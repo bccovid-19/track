@@ -98,7 +98,10 @@ def submit_hcp_order(d: HCPSubmission):
             EAR_SAVERS_FIELD_ID: d.requestEarSavers,
             CONTACT_NAME_FIELD_ID: d.contactName,
             CONTACT_PHONE_FIELD_ID: d.contactPhone,
-            FACILITY_ADDRESS_FIELD_ID: d.facilityAddress,
+            FACILITY_ADDRESS_FIELD_ID: dict(
+                format="markdown",
+                raw=d.facilityAddress
+            ),
             FACILITY_NAME_FIELD_ID: d.facilityName
         },
         extra_links={

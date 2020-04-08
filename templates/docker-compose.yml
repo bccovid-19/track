@@ -41,6 +41,7 @@ services:
       - apps
     depends_on:
       - op-web
+      - workpackage-manager
 
   ## App that does workflow automation for OpenProject
   workpackage-manager:
