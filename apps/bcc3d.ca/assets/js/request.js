@@ -22,7 +22,7 @@ $(function(){
         console.log(data);
 
         // post it up.
-        var jqxhr = $.post( "https://track.bcc3d.ca/hcp/submit", function() {
+        var jqxhr = $.post( "https://qa.track.bcc3d.ca/hcp/submit", function() {
             console.log('Success.')
         })
         .done(function() {
