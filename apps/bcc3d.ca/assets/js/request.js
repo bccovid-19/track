@@ -3,10 +3,15 @@
 
 $(function(){
 
+    var submitButton = $("#submitButton");
+
     $('.form-request').on('submit', function(ev) {
 
         var form = this;
-        ev.preventDefault();
+
+        if (form.locked) {
+            return;
+        }
 
         // serialize form data to JSON
         var data = {
@@ -22,6 +27,9 @@ $(function(){
         }
 
         console.log(data);
+        form.locked = true;
+        submitButton.attr('disabled', true);
+        ev.preventDefault();
 
         $.ajax({
             type: 'POST',
@@ -36,7 +44,8 @@ $(function(){
         })
         .fail(function() {
             alert( "There was an error with your submission." );
+            form.locked = false;
+            submitButton.attr('disabled', false);
         });
-
     });
 });
