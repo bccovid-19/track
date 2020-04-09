@@ -14,7 +14,8 @@ SUCCESS_RESPONSE = json.dumps({'success': True})
 ORDER_TYPE_ID = 1
 PRODUCTION_ORDER_TYPE_ID = 4
 CONFIRMED_STATUS_ID = 4
-PPE_PROJECT_ID = 3
+ORDER_PROJECT_ID = 3
+PRODUCTION_ORDER_PROJECT_ID = 5
 FACE_SHIELD_FRAMES_FIELD_ID = 'customField7'
 VISORS_FIELD_ID = 'customField8'
 EAR_SAVERS_FIELD_ID = 'customField9'
@@ -24,6 +25,7 @@ FACILITY_TYPE_FIELD_ID = 'customField2'
 URGENCY_FIELD_ID = 'customField6'
 FACILITY_NAME_FIELD_ID = 'customField1'
 FACILITY_ADDRESS_FIELD_ID = 'customField3'
+REGION_FIELD_ID = 'customField16'
 
 FACILITY_TYPE_OPTION_IDS = {name: i + 1 for i, name in enumerate([
     'Primary Care',
@@ -52,6 +54,7 @@ class BatchedField(NamedTuple):
 
 class Order(NamedTuple):
     subject: str
+    region: str
     quantities: Dict[str, int]
 
 
@@ -91,7 +94,7 @@ def submit_hcp_order(d: HCPSubmission):
     spec = WorkPackageSpec(
         type_id=ORDER_TYPE_ID,
         subject='{} items for {}'.format(total_items, d.facilityName),
-        project_id=PPE_PROJECT_ID,
+        project_id=ORDER_PROJECT_ID,
         extra_fields={
             FACE_SHIELD_FRAMES_FIELD_ID: d.requestFaceShieldFrames,
             VISORS_FIELD_ID: d.requestVisors,
@@ -134,16 +137,23 @@ def parse_order(order_dict) -> Order:
     for batched_field in batched_fields:
         key = batched_field.open_project_key
         quantities[key] = order_dict[key]
-    return Order(quantities=quantities, subject=order_dict['subject'])
+    return Order(
+        quantities=quantities,
+        subject=order_dict['subject'],
+        region=order_dict[REGION_FIELD_ID]
+    )
 
 
 def create_production_order(parent_id: int, order: Order):
     spec = WorkPackageSpec(
         subject=order.subject,
         type_id=PRODUCTION_ORDER_TYPE_ID,
-        project_id=PPE_PROJECT_ID,
+        project_id=PRODUCTION_ORDER_PROJECT_ID,
         parent_id=parent_id,
-        extra_fields=order.quantities
+        extra_fields={
+            **order.quantities,
+            REGION_FIELD_ID: order.region
+        }
     )
     return openproject.create_work_package(spec)
 
