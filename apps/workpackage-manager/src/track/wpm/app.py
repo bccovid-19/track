@@ -129,7 +129,11 @@ def create_batched_sub_orders(super_order: Order, existing_sub_orders: List[Orde
         subject = '{} - {} x{}'.format(super_order.subject,
                                        batched_field.name, batch_size)
         for _ in range(new_batches):
-            yield Order(quantities={**default_quantities, key: batch_size}, subject=subject)
+            yield Order(
+                quantities={**default_quantities, key: batch_size},
+                subject=subject,
+                region=super_order.region
+            )
 
 
 def parse_order(order_dict) -> Order:
