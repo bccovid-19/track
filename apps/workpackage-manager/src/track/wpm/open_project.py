@@ -12,10 +12,14 @@ class WorkPackageSpec(NamedTuple):
     project_id: int
     description: str = ''
     extra_fields: Dict[str, Any] = {}
+    extra_links: Dict[str, str] = {}
     status_id: Optional[int] = None
     parent_id: Optional[int] = None
 
     def as_openproject_object(self):
+        extra_links = {
+            k: {'href': '/api/v3/' + v} for k, v in self.extra_links.items()
+        }
         return {
             'subject': self.subject,
             'description': {
@@ -33,7 +37,9 @@ class WorkPackageSpec(NamedTuple):
                 },
                 'parent': {
                     'href': '/api/v3/work_packages/{}'.format(self.parent_id) if self.parent_id else None
-                }
+                },
+                **extra_links
+
             },
             **self.extra_fields
         }

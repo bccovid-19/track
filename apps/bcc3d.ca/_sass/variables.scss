@@ -1,0 +1,27 @@
+$font-family-sans-serif: 'Source Sans Pro', sans-serif;
+$headings-font-family: 'Roboto Condensed', sans-serif;
+
+// $font-weight-base: 300;
+// $headings-margin-bottom
+// $headings-font-family
+// $headings-font-weight
+// $headings-line-height
+// $headings-color:
+
+// colors
+$white:   #fff;
+$orange:  #fd7e14;
+
+$brand-color: #0e568c;
+$brand-secondary-color: #287eb2;
+$brand-accent-color: $orange;
+$middle-gradient-color: mix($brand-color, $brand-secondary-color, 95%);
+
+$primary: $brand-color;
+$secondary: $orange;
+
+$navbar-dark-color:                 rgba($white, 0.65);
+$navbar-dark-hover-color:           rgba($white,  0.9);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .50);
+

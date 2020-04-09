@@ -35,10 +35,13 @@ services:
     volumes:
       - ./config/apps-nginx.conf:/etc/nginx/nginx.conf
       - ./config/apps-nginx-include.conf:/etc/nginx/apps-nginx-include.conf
+      - ./config/apps-nginx-cors.conf:/etc/nginx/apps-nginx-cors.conf
+      - ./apps/bcc3d.ca/_site:/var/www/bcc3d.ca
     networks:
       - apps
     depends_on:
       - op-web
+      - workpackage-manager
 
   ## App that does workflow automation for OpenProject
   workpackage-manager:

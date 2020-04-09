@@ -2,14 +2,15 @@
 **/.idea
 
 # Local data mounts for docker containers
-./data
+data
 
 # Output of templating engine
-./config
-./docker-compose.yml
+config
+docker-compose.yml
+apps/bcc3d.ca/_config.yml
 
 # Secret keys
 **/api_key.txt
 
 # Per-deployment config
-./config.yml
+config.yml
