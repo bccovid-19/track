@@ -1,14 +1,16 @@
-from flask import Flask, json, request
 import logging
-import yaml
-from typing import NamedTuple, Dict, List, Iterator
 import math
-import os
 from pathlib import Path
+from typing import Dict, Iterator, List, NamedTuple
+
+import yaml
+from flask import Flask, json, request
 
 from track.wpm.open_project import OpenProjectClient, WorkPackageSpec
 
+# Configuration constants
 API_KEY = Path('api_key.txt').read_text().strip()
+assert len(API_KEY) > 40, "API key seems invalid, too short"
 CONFIG_FILE = 'config.yml'
 SUCCESS_RESPONSE = json.dumps({'success': True})
 ORDER_TYPE_ID = 1
@@ -26,8 +28,7 @@ URGENCY_FIELD_ID = 'customField6'
 FACILITY_NAME_FIELD_ID = 'customField1'
 FACILITY_ADDRESS_FIELD_ID = 'customField3'
 REGION_FIELD_ID = 'customField16'
-
-FACILITY_TYPE_OPTION_IDS = {name: i + 1 for i, name in enumerate([
+FACILITY_TYPE_OPTION_IDS = dict(map(reversed, enumerate([
     'Primary Care',
     'Nursing Home',
     'Specialist',
@@ -35,15 +36,12 @@ FACILITY_TYPE_OPTION_IDS = {name: i + 1 for i, name in enumerate([
     'Health Authority / Other Organization',
     'Pharmacy',
     'Other'
-])}
-
+], 1)))
 URGENCY_OPTION_IDS = {
     1: 8,
     2: 9,
     3: 10
 }
-
-assert len(API_KEY) > 40, "API key seems invalid, too short"
 
 
 class BatchedField(NamedTuple):
@@ -71,15 +69,22 @@ class HCPSubmission(NamedTuple):
     # 1 means "Staff are working without face shields", 3 means "Still have adequate stock available"
     requestUrgency: int
 
-    # Must be one of: Primary Care | Nursing Home | Specialist | Hospital | Health Authority / Other Organization | Pharmacy | Other
+    # Must be one of:
+    #   | Primary Care
+    #   | Nursing Home
+    #   | Specialist
+    #   | Hospital
+    #   | Health Authority / Other Organization
+    #   | Pharmacy
+    #   | Other
     facilityType: str
 
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-with open(CONFIG_FILE, 'r') as f:
-    config = yaml.safe_load(f)
+with open(CONFIG_FILE, 'r') as config_file_handle:
+    config = yaml.safe_load(config_file_handle)
 
 openproject = OpenProjectClient(url=config['openProjectUrl'], api_key=API_KEY)
 
@@ -117,7 +122,7 @@ def submit_hcp_order(d: HCPSubmission):
 
 def create_batched_sub_orders(super_order: Order, existing_sub_orders: List[Order]) -> Iterator[Order]:
     all_keys = {f.open_project_key for f in batched_fields}
-    default_quantities = {k: 0 for k in all_keys}
+    default_quantities = dict.fromkeys(all_keys, 0)
     for batched_field in batched_fields:
         key = batched_field.open_project_key
         batch_size = batched_field.batch_size
@@ -137,12 +142,8 @@ def create_batched_sub_orders(super_order: Order, existing_sub_orders: List[Orde
 
 
 def parse_order(order_dict) -> Order:
-    quantities = {}
-    for batched_field in batched_fields:
-        key = batched_field.open_project_key
-        quantities[key] = order_dict[key]
     return Order(
-        quantities=quantities,
+        quantities={field.open_project_key: order_dict[field.open_project_key] for field in batched_fields},
         subject=order_dict['subject'],
         region=order_dict[REGION_FIELD_ID]
     )
