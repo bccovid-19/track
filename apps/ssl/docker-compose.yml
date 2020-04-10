@@ -29,7 +29,9 @@ services:
         -d track.bcc3d.ca
         -d www.bcc3d.ca
         -d bcc3d.com
+        -d bcc3d.ca
         -d www.bcc3d.com
         -d track.qa.bcc3d.ca
         -d www.qa.bcc3d.ca
+        -d join.bcc3d.ca
     network_mode: host
