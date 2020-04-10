@@ -28,7 +28,7 @@ URGENCY_FIELD_ID = 'customField6'
 FACILITY_NAME_FIELD_ID = 'customField1'
 FACILITY_ADDRESS_FIELD_ID = 'customField3'
 REGION_FIELD_ID = 'customField16'
-FACILITY_TYPE_OPTION_IDS = dict(map(reversed, enumerate([
+FACILITY_TYPE_OPTION_IDS = {name: i + 1 for i, name in enumerate([
     'Primary Care',
     'Nursing Home',
     'Specialist',
@@ -36,7 +36,7 @@ FACILITY_TYPE_OPTION_IDS = dict(map(reversed, enumerate([
     'Health Authority / Other Organization',
     'Pharmacy',
     'Other'
-], 1)))
+])}
 URGENCY_OPTION_IDS = {
     1: 8,
     2: 9,
