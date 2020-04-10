@@ -1,6 +1,6 @@
 import json
 import logging
-from typing import NamedTuple, Dict, Any, Optional
+from typing import Any, Dict, NamedTuple, Optional
 
 import requests
 from requests.auth import HTTPBasicAuth
