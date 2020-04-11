@@ -1,3 +1,7 @@
-Flask==1.1.2
+flask==1.1.2
 pyyaml==5.3.1
 requests==2.23.0
+flasgger==0.9.4
+apispec==3.3.0
+marshmallow==3.5.1
+apispec-webframeworks==0.5.2

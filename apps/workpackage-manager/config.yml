@@ -15,4 +15,4 @@ server:
   port: 80
 
 openProjectUrl:
-  https://qa.track.bcc3d.ca
+  https://track.qa.bcc3d.ca
