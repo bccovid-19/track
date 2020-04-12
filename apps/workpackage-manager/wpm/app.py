@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO,
 with open(CONFIG_FILE, 'r') as config_file_handle:
     config = yaml.safe_load(config_file_handle)
 
-openproject = OpenProjectClient(**config['openProject'])
+openproject = OpenProjectClient(**config['openproject'])
 orders = OrderProcessor(BatchedField.from_config(config))
 
 app = Flask(__name__)
