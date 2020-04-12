@@ -29,7 +29,7 @@ app = Flask(__name__)
 @app.route('/openproject/update', methods=['POST'])
 def openproject_update():
     """
-    Webhook for OpenProject work-package updates
+    Web-hook for OpenProject work-package updates
     """
     req_json = request.get_json()
     if 'work_package' in req_json:
@@ -77,6 +77,7 @@ def regions_get():
     return RegionsResponseSchema.from_options(options)
 
 
+# noinspection PyArgumentList
 spec = APISpec(
     title='WorkPackage Manager',
     version='1.0',

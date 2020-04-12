@@ -1,4 +1,5 @@
 import pytest
+from wpm.constants import CONTACT_EMAIL_FIELD_ID
 
 try:
     from wpm.app import app, openproject
@@ -26,6 +27,26 @@ def test_custom_field_fetching(test_client):
 
 
 def test_order_submission(test_client):
-    test_client.post(dict(
-
-    ))
+    test_client.post(path="/hcp/request", json={
+        "contact": {
+            "email": "email",
+            "name": "name",
+            "phone": "phone"
+        },
+        "facility": {
+            "address": "address",
+            "name": "name",
+            "type": "Primary Care"
+        },
+        "items": {
+            "earSavers": 10,
+            "faceShieldFrames": 5,
+            "visors": 2
+        },
+        "notes": "notes",
+        "urgency": 1,
+        "region": 21
+    })
+    result = openproject.unsent_requests.pop()
+    # Mostly we are just testing that nothing crashed
+    assert result[CONTACT_EMAIL_FIELD_ID] == 'email'

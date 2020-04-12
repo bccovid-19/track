@@ -41,6 +41,7 @@ class ItemsSchema(Schema):
 class HCPRequestSchema(Schema):
     urgency = Int(validate=OneOf([1, 2, 3]))
     notes = Str()
+    region = Int(description='Get region ids from /region')
     facility = Nested(FacilitySchema)
     contact = Nested(ContactSchema)
     items = Nested(ItemsSchema)
