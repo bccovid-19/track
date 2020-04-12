@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from typing import Any, Dict, NamedTuple, Optional, List
 
 import requests
+from requests.auth import HTTPBasicAuth
 from bs4 import BeautifulSoup
 
 # I made this number up - it's not based on any OpenProject timeout logic
@@ -59,15 +60,17 @@ class OpenProjectClient:
     url: str
     username: str
     password: str
+    apikey_auth: HTTPBasicAuth
     session: requests.Session
     logged_in_at: datetime
     testing: bool = False
     unsent_requests: List[Dict]
 
-    def __init__(self, url: str, username: str, password: str):
+    def __init__(self, url: str, username: str, password: str, apikey: str):
         self.url = url
         self.username = username
         self.password = password
+        self.apikey_auth = HTTPBasicAuth(username='apikey', password=apikey)
         self.session = requests.Session()
         self.logged_in_at = datetime(2000, 1, 1)
         self.unsent_requests = []
@@ -87,16 +90,20 @@ class OpenProjectClient:
         login_page.raise_for_status()
         csrf_token = BeautifulSoup(login_page.text, 'html.parser').find('meta', dict(name='csrf-token'))['content']
         login_resp = self.session.post('{}/login'.format(self.url),
-                                       json=dict(authenticity_token=csrf_token, username=self.username,
+                                       json=dict(authenticity_token=csrf_token,
+                                                 username=self.username,
                                                  password=self.password))
         login_resp.raise_for_status()
         self.logged_in_at = datetime.now()
 
-    def get(self, path: str):
+    def get(self, path: str, session_auth=False):
         url = '{}{}'.format(self.url, path)
         logging.info('GET {}'.format(url))
-        self.assert_logged_in()
-        resp = self.session.get(url)
+        if session_auth:
+            self.assert_logged_in()
+            resp = self.session.get(url)
+        else:
+            resp = requests.get(url, auth=self.apikey_auth)
         resp.raise_for_status()
         return resp
 
@@ -107,7 +114,7 @@ class OpenProjectClient:
         return result
 
     def get_soup(self, path: str):
-        resp = self.get(path)
+        resp = self.get(path, session_auth=True)
         return BeautifulSoup(resp.text, 'html.parser')
 
     def post(self, path: str, json_body):
@@ -117,11 +124,10 @@ class OpenProjectClient:
             logging.info('Not actually sending POST since we are in testing mode')
             self.unsent_requests.append(json_body)
             return {}
-        self.assert_logged_in()
-        resp = self.session.post(url=url, json=json_body)
+        resp = requests.post(url=url, json=json_body, auth=self.apikey_auth)
+        resp.raise_for_status()
         result = resp.json()
         logging.debug('response {}'.format(json.dumps(result)))
-        resp.raise_for_status()
         return result
 
     def get_work_package(self, id: int):
