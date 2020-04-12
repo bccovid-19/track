@@ -16,6 +16,6 @@ server:
   base_url: /api/v1
 
 openproject:
-  url: http://op-web:8080
+  url: {{ scheme }}://{{ apps.bcc3d_ca.hostname }}
   username: {{ openprojectApi.username }}
   password: {{ openprojectApi.password }}
