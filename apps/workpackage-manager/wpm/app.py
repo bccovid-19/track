@@ -38,7 +38,7 @@ def openproject_update():
     req_json = request.get_json()
     if 'work_package' in req_json:
         wp_id = int(req_json['work_package']['id'])
-        orders.update_work_package(openproject, wp_id)
+        orders.process_work_package_update(openproject, wp_id)
     else:
         logging.warning('unrecognised request {}'.format(json.dumps(req_json)))
     return SUCCESS_RESPONSE

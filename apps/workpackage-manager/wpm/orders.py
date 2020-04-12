@@ -23,6 +23,9 @@ class Order(NamedTuple):
 
 
 def create_hcp_order_spec(hcp_request) -> WorkPackageSpec:
+    """
+    Convert an HCP request from our API into one for OpenProject
+    """
     items = hcp_request['items']
     facility = hcp_request['facility']
     contact = hcp_request['contact']
@@ -55,6 +58,9 @@ def create_hcp_order_spec(hcp_request) -> WorkPackageSpec:
 
 
 def create_production_order_spec(parent_id: int, order: Order) -> WorkPackageSpec:
+    """
+    Build a production order work-package spec from an `order`, which attaches the given `parent`
+    """
     return WorkPackageSpec(
         subject=order.subject,
         type_id=PRODUCTION_ORDER_TYPE_ID,
@@ -74,6 +80,9 @@ class OrderProcessor:
         self.batched_fields = batched_fields
 
     def parse_order(self, openproject_dict: Dict) -> Order:
+        """
+        Convert a work-package object from the OpenProject API into an `Order`
+        """
         return Order(
             quantities={field.openproject_key: openproject_dict[field.openproject_key]
                         for field in self.batched_fields},
@@ -82,6 +91,10 @@ class OrderProcessor:
         )
 
     def create_batched_sub_orders(self, super_order: Order, existing_sub_orders: List[Order]) -> List[Order]:
+        """
+        Create a list of new batch orders given the demand in `super_order` but subtracting any demand
+        already fulfilled by `existing_sub_orders`.
+        """
         all_keys = {f.openproject_key for f in self.batched_fields}
         default_quantities = dict.fromkeys(all_keys, 0)
         result = []
@@ -103,7 +116,11 @@ class OrderProcessor:
                 ))
         return result
 
-    def update_work_package(self, openproject_client: OpenProjectClient, work_package_id):
+    def process_work_package_update(self, openproject_client: OpenProjectClient, work_package_id):
+        """
+        Processes an update message for the work-package with id `work_package_id`.
+        This runs the batched production-order creation logic.
+        """
         logging.info('Updating work package id {}'.format(work_package_id))
         wp = openproject_client.get_work_package(work_package_id)
         linked_fields = wp['_embedded']
