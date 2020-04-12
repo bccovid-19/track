@@ -4,7 +4,7 @@ import yaml
 from apispec.ext.marshmallow import MarshmallowPlugin
 from apispec_webframeworks.flask import FlaskPlugin
 from flasgger import APISpec, Swagger
-from flask import Flask, json, request
+from flask import Flask, json, request, Blueprint
 
 from wpm.dto import HCPRequestSchema, RegionsResponseSchema
 from wpm.openproject import OpenProjectClient
@@ -24,6 +24,9 @@ openproject = OpenProjectClient(**config['openproject'])
 orders = OrderProcessor(BatchedField.from_config(config))
 
 app = Flask(__name__)
+
+blueprint = Blueprint('api', __name__, url_prefix=config['server']['base_url'])
+app.register_blueprint(blueprint)
 
 
 @app.route('/openproject/update', methods=['POST'])

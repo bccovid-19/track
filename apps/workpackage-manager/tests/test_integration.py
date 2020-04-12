@@ -4,7 +4,7 @@ from wpm.constants import CONTACT_EMAIL_FIELD_ID
 try:
     from wpm.app import app, openproject
     openproject.testing = True
-except Exception:
+except Exception as ex:
     app = None
 
 
