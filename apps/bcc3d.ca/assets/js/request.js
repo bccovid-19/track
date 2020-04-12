@@ -1,10 +1,10 @@
 ---
 ---
 
-const QA_URL = "https://2d107b21-5927-4fac-bbe5-879c85d58f04.mock.pstmn.io/qa_url";
+const REGIONS_API_ENDPOINT = "https://www.qa.bcc3d.ca/api/v1/region";
 
 window.onload = () => {
-    fetch(QA_URL)
+    fetch(REGIONS_API_ENDPOINT)
         .then((response) => {
             return response.json();
         })
