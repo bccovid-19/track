@@ -1,12 +1,35 @@
 ---
 ---
 
+const QA_URL = "https://2d107b21-5927-4fac-bbe5-879c85d58f04.mock.pstmn.io/qa_url";
+
+window.onload = () => {
+    fetch(QA_URL)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            renderFacilityRegions(data.regions)
+        });
+};
+
+const renderFacilityRegions = (regions) => {
+    const facilityAddressContainer = $("#facilityRegion");
+    regions.forEach(region => {
+        facilityAddressContainer.append(createRadioOption(region))
+    })
+}
+
+const createRadioOption = (region) => {
+    return `<option class="custom-control-label" value="${region.id}">${region.label}</option>`;
+}
+
+
 $(function(){
 
     var submitButton = $("#submitButton");
 
     $('.form-request').on('submit', function(ev) {
-
         var form = this;
 
         if (form.locked) {
@@ -17,13 +40,16 @@ $(function(){
         var data = {
             facilityName: this.facilityName.value,
             facilityAddress: this.facilityAddress.value,
+            facilityRegion: this.facilityRegion.value,
             contactName: this.contactName.value,
             contactPhone: this.contactPhone.value,
+            contactEmail: this.contactEmail.value,
             requestFaceShieldFrames: parseInt(this.requestFaceShieldFrames.value) || 0,
             requestVisors: parseInt(this.requestVisors.value) || 0,
             requestEarSavers: parseInt(this.requestEarSavers.value) || 0,
             requestUrgency: parseInt(this.requestUrgency.value) || 1,
             facilityType: this.facilityType.value,
+            additionalNotes: this.additionalNotes.value || ""
         }
 
         console.log(data);
