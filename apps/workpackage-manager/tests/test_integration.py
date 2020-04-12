@@ -17,7 +17,7 @@ def test_client():
 
 
 def test_custom_field_fetching(test_client):
-    regions = test_client.get('/region').json['regions']
+    regions = test_client.get('/api/v1/region').json['regions']
     assert len(regions) > 5
     for region in regions:
         assert region['label'] is not None
@@ -27,7 +27,7 @@ def test_custom_field_fetching(test_client):
 
 
 def test_order_submission(test_client):
-    test_client.post(path="/hcp/request", json={
+    test_client.post(path="/api/v1/hcp/request", json={
         "contact": {
             "email": "email",
             "name": "name",

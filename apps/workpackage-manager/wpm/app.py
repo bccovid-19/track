@@ -20,16 +20,17 @@ logging.basicConfig(level=logging.INFO,
 with open(CONFIG_FILE, 'r') as config_file_handle:
     config = yaml.safe_load(config_file_handle)
 
+BASE_URL = config['server']['base_url']
+
 openproject = OpenProjectClient(**config['openproject'])
 orders = OrderProcessor(BatchedField.from_config(config))
 
 app = Flask(__name__)
 
-blueprint = Blueprint('api', __name__, url_prefix=config['server']['base_url'])
-app.register_blueprint(blueprint)
+api = Blueprint('api', __name__, url_prefix=BASE_URL)
 
 
-@app.route('/openproject/update', methods=['POST'])
+@api.route('/openproject/update', methods=['POST'])
 def openproject_update():
     """
     Web-hook for OpenProject work-package updates
@@ -43,7 +44,7 @@ def openproject_update():
     return SUCCESS_RESPONSE
 
 
-@app.route('/hcp/request', methods=['POST'])
+@api.route('/hcp/request', methods=['POST'])
 def hcp_request_post():
     """
     ---
@@ -65,7 +66,7 @@ def hcp_request_post():
     return SUCCESS_RESPONSE
 
 
-@app.route('/region', methods=['GET'])
+@api.route('/region', methods=['GET'])
 def regions_get():
     """
     ---
@@ -91,6 +92,8 @@ spec = APISpec(
     ],
 )
 
+app.register_blueprint(api)
+
 template = spec.to_flasgger(
     app,
     definitions=[
@@ -101,7 +104,9 @@ template = spec.to_flasgger(
         regions_get]
 )
 
-swag = Swagger(app, template=template)
+swagger_config = Swagger.DEFAULT_CONFIG.copy()
+swagger_config['specs_route'] = '{}/apidocs/'.format(BASE_URL)
+swag = Swagger(app, template=template, config=swagger_config)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=config['server']['port'])
