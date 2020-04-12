@@ -7,3 +7,8 @@ apps:
 
 scheme: http
 proxyPort: 80
+
+# Needs to be filled
+openprojectApi:
+  username:
+  password:

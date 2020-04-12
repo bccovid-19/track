@@ -9,7 +9,7 @@ from wpm.constants import *
 
 class BatchedField(NamedTuple):
     name: str
-    open_project_key: str
+    openproject_key: str
     batch_size: int
 
     @staticmethod
@@ -76,18 +76,18 @@ class OrderProcessor:
 
     def parse_order(self, openproject_dict: Dict) -> Order:
         return Order(
-            quantities={field.open_project_key: openproject_dict[field.open_project_key]
+            quantities={field.openproject_key: openproject_dict[field.openproject_key]
                         for field in self.batched_fields},
             subject=openproject_dict[SUBJECT_FIELD_ID],
             region=openproject_dict[REGION_FIELD_ID]
         )
 
     def create_batched_sub_orders(self, super_order: Order, existing_sub_orders: List[Order]) -> List[Order]:
-        all_keys = {f.open_project_key for f in self.batched_fields}
+        all_keys = {f.openproject_key for f in self.batched_fields}
         default_quantities = dict.fromkeys(all_keys, 0)
         result = []
         for batched_field in self.batched_fields:
-            key = batched_field.open_project_key
+            key = batched_field.openproject_key
             batch_size = batched_field.batch_size
             required = super_order.quantities[key]
             existing = sum([existing.quantities[key]

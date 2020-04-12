@@ -2,13 +2,13 @@
 fields:
   batched:
     - name: Face Shield Frame
-      open_project_key: customField7
+      openproject_key: customField7
       batch_size: 10
     - name: Visors
-      open_project_key: customField8
+      openproject_key: customField8
       batch_size: 10
     - name: Ear Savers
-      open_project_key: customField9
+      openproject_key: customField9
       batch_size: 10
 
 server:
