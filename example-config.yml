@@ -12,3 +12,4 @@ proxyPort: 80
 openprojectApi:
   username:
   password:
+  apikey:

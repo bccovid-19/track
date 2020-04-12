@@ -19,3 +19,4 @@ openproject:
   url: {{ scheme }}://{{ apps.openproject.hostname }}
   username: {{ openprojectApi.username }}
   password: {{ openprojectApi.password }}
+  apikey: {{ openprojectApi.apikey }}
