@@ -5,3 +5,4 @@ flasgger==0.9.4
 apispec==3.3.0
 marshmallow==3.5.1
 apispec-webframeworks==0.5.2
+beautifulsoup4==4.9.0

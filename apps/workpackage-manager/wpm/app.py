@@ -1,22 +1,16 @@
 import logging
-import math
-from pathlib import Path
 
 import yaml
-from flasgger import APISpec, Swagger
 from apispec.ext.marshmallow import MarshmallowPlugin
 from apispec_webframeworks.flask import FlaskPlugin
-
+from flasgger import APISpec, Swagger
 from flask import Flask, json, request
 
-from dto import HCPRequestSchema
+from dto import HCPRequestSchema, RegionsResponseSchema
 from wpm.openproject import OpenProjectClient
-from wpm.orders import OrderProcessor, BatchedField, create_hcp_order_spec
+from wpm.orders import OrderProcessor, BatchedField, create_hcp_order_spec, REGION_FIELD_ID_NUM
 
 # Configuration constants
-
-API_KEY = Path('api_key.txt').read_text().strip()
-assert len(API_KEY) > 40, "API key seems invalid, too short"
 CONFIG_FILE = 'config.yml'
 SUCCESS_RESPONSE = json.dumps({'success': True})
 
@@ -26,7 +20,7 @@ logging.basicConfig(level=logging.INFO,
 with open(CONFIG_FILE, 'r') as config_file_handle:
     config = yaml.safe_load(config_file_handle)
 
-openproject = OpenProjectClient(url=config['openProjectUrl'], api_key=API_KEY)
+openproject = OpenProjectClient(**config['openProject'])
 orders = OrderProcessor(BatchedField.from_config(config))
 
 app = Flask(__name__)
@@ -68,6 +62,21 @@ def hcp_request_post():
     return SUCCESS_RESPONSE
 
 
+@app.route('/region', methods=['GET'])
+def regions_get():
+    """
+    ---
+    description: List of all regions
+    responses:
+        200:
+            description: List of all regions
+            schema:
+              $ref: '#/definitions/RegionsResponse'
+    """
+    options = openproject.get_custom_field_options(REGION_FIELD_ID_NUM)
+    return RegionsResponseSchema.from_options(options)
+
+
 spec = APISpec(
     title='WorkPackage Manager',
     version='1.0',
@@ -80,13 +89,15 @@ spec = APISpec(
 
 template = spec.to_flasgger(
     app,
-    definitions=[HCPRequestSchema],
-    paths=[hcp_request_post]
+    definitions=[
+        HCPRequestSchema,
+        RegionsResponseSchema],
+    paths=[
+        hcp_request_post,
+        regions_get]
 )
 
-
 swag = Swagger(app, template=template)
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=config['server']['port'])

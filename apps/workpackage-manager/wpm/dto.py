@@ -1,6 +1,8 @@
 from marshmallow import Schema
-from marshmallow.fields import Str, Int, Nested
+from marshmallow.fields import Str, Int, Nested, Raw, List
 from marshmallow.validate import Range, OneOf
+
+from openproject import CustomFieldOption
 
 REQUESTED_ITEM_RANGE = Range(min=0, max=10000)
 VALID_FACILITY_TYPES = OneOf([
@@ -15,9 +17,19 @@ class FacilitySchema(Schema):
     type = Str(validate=VALID_FACILITY_TYPES)
 
 
+class ChoiceSchema(Schema):
+    label = Str()
+    id = Raw()
+
+    @staticmethod
+    def from_dto(choice: CustomFieldOption):
+        return ChoiceSchema().dump(choice)
+
+
 class ContactSchema(Schema):
     name = Str()
     phone = Str()
+    email = Str()
 
 
 class ItemsSchema(Schema):
@@ -28,6 +40,15 @@ class ItemsSchema(Schema):
 
 class HCPRequestSchema(Schema):
     urgency = Int(validate=OneOf([1, 2, 3]))
+    notes = Str()
     facility = Nested(FacilitySchema)
     contact = Nested(ContactSchema)
     items = Nested(ItemsSchema)
+
+
+class RegionsResponseSchema(Schema):
+    regions = List(Nested(ChoiceSchema))
+
+    @staticmethod
+    def from_options(choices):
+        return RegionsResponseSchema().dump(dict(regions=[ChoiceSchema.from_dto(c) for c in choices]))

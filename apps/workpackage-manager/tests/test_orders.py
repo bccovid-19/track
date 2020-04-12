@@ -1,5 +1,4 @@
-import unittest
-import mock
+import pytest
 
 from wpm.orders import *
 
@@ -24,42 +23,41 @@ def remove_subject(orders):
         return Order(**d, subject='')
 
 
-class TestOrderProcessing(unittest.TestCase):
-    def test_order_parsing(self):
-        orders = OrderProcessor(batched_fields)
-        test_dict = {
-            SUBJECT_FIELD_ID: 'test subject',
-            REGION_FIELD_ID: 'test region',
-            batched_fields[0].open_project_key: 11,
-            batched_fields[1].open_project_key: 6,
-            'ignored': 'test'
-        }
+def test_order_parsing():
+    orders = OrderProcessor(batched_fields)
+    test_dict = {
+        SUBJECT_FIELD_ID: 'test subject',
+        REGION_FIELD_ID: 'test region',
+        batched_fields[0].open_project_key: 11,
+        batched_fields[1].open_project_key: 6,
+        'ignored': 'test'
+    }
 
-        order = orders.parse_order(test_dict)
-        self.assertEqual(example_order(11, 6), order)
+    order = orders.parse_order(test_dict)
+    assert example_order(11, 6) == order
 
-        del test_dict[SUBJECT_FIELD_ID]
-        self.assertRaises(Exception, lambda: orders.parse_order(test_dict))
-        self.assertRaises(Exception, lambda: orders.parse_order({}))
-
-    def assert_orders_equal(self, orders1, orders2):
-        self.assertEqual(remove_subject(orders1), remove_subject(orders2))
-
-    def test_batching(self):
-        orders = OrderProcessor(batched_fields)
-        empty1 = orders.create_batched_sub_orders(example_order(0, 0), [])
-        self.assert_orders_equal([], empty1)
-
-        empty2 = orders.create_batched_sub_orders(example_order(5, 5), [example_order(5, 0), example_order(0, 5)])
-        self.assert_orders_equal([], empty2)
-
-        batched1 = orders.create_batched_sub_orders(example_order(4, 6), [])
-        self.assert_orders_equal([example_order(2, 0), example_order(2, 0), example_order(0, 5), example_order(0, 5)],
-                                 batched1)
-
-        batched2 = orders.create_batched_sub_orders(example_order(4, 5), [example_order(3, 0), example_order(0, 5)])
-        self.assert_orders_equal([example_order(2, 0)], batched2)
+    del test_dict[SUBJECT_FIELD_ID]
+    with pytest.raises(Exception):
+        orders.parse_order(test_dict)
+    with pytest.raises(Exception):
+        orders.parse_order({})
 
 
-if __name__ == '__main__':
-    unittest.main()
+def assert_orders_equal(orders1, orders2):
+    assert remove_subject(orders1) == remove_subject(orders2)
+
+
+def test_batching():
+    orders = OrderProcessor(batched_fields)
+    empty1 = orders.create_batched_sub_orders(example_order(0, 0), [])
+    assert_orders_equal([], empty1)
+
+    empty2 = orders.create_batched_sub_orders(example_order(5, 5), [example_order(5, 0), example_order(0, 5)])
+    assert_orders_equal([], empty2)
+
+    batched1 = orders.create_batched_sub_orders(example_order(4, 6), [])
+    assert_orders_equal([example_order(2, 0), example_order(2, 0), example_order(0, 5), example_order(0, 5)],
+                             batched1)
+
+    batched2 = orders.create_batched_sub_orders(example_order(4, 5), [example_order(3, 0), example_order(0, 5)])
+    assert_orders_equal([example_order(2, 0)], batched2)

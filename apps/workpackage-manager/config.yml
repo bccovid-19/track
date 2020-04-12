@@ -14,5 +14,7 @@ fields:
 server:
   port: 80
 
-openProjectUrl:
-  https://track.qa.bcc3d.ca
+openProject:
+  url: https://track.qa.bcc3d.ca
+  password: sp45SG0m6y0B
+  username: bot@track.bcc3d.ca
