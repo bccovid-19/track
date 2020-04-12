@@ -1,10 +1,9 @@
-from typing import NamedTuple, Dict, List, Iterator
 import logging
 import math
+from typing import NamedTuple, Dict, List
 
-from dto import HCPRequestSchema
-from wpm.openproject import WorkPackageSpec, OpenProjectClient
 from wpm.constants import *
+from wpm.openproject import WorkPackageSpec, OpenProjectClient
 
 
 class BatchedField(NamedTuple):

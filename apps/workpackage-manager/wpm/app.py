@@ -6,7 +6,7 @@ from apispec_webframeworks.flask import FlaskPlugin
 from flasgger import APISpec, Swagger
 from flask import Flask, json, request
 
-from dto import HCPRequestSchema, RegionsResponseSchema
+from wpm.dto import HCPRequestSchema, RegionsResponseSchema
 from wpm.openproject import OpenProjectClient
 from wpm.orders import OrderProcessor, BatchedField, create_hcp_order_spec, REGION_FIELD_ID_NUM
 
