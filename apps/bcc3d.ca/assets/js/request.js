@@ -1,6 +1,5 @@
 ---
 ---
-
 const REGIONS_API_ENDPOINT = "https://www.qa.bcc3d.ca/api/v1/region";
 
 window.onload = () => {
@@ -37,19 +36,25 @@ $(function(){
         }
 
         // serialize form data to JSON
-        var data = {
-            facilityName: this.facilityName.value,
-            facilityAddress: this.facilityAddress.value,
-            facilityRegion: this.facilityRegion.value,
-            contactName: this.contactName.value,
-            contactPhone: this.contactPhone.value,
-            contactEmail: this.contactEmail.value,
-            requestFaceShieldFrames: parseInt(this.requestFaceShieldFrames.value) || 0,
-            requestVisors: parseInt(this.requestVisors.value) || 0,
-            requestEarSavers: parseInt(this.requestEarSavers.value) || 0,
-            requestUrgency: parseInt(this.requestUrgency.value) || 1,
-            facilityType: this.facilityType.value,
-            additionalNotes: this.additionalNotes.value || ""
+        let data = {
+            contact: {
+                email: this.contactEmail.value,
+                name: this.contactName.value,
+                phone: this.contactPhone.value
+            },
+            facility: {
+                address: this.facilityAddress.value,
+                name: this.facilityName.value,
+                type: this.facilityType.value
+            },
+            items: {
+                earSavers: parseInt(this.requestEarSavers.value) || 0,
+                faceShieldFrames: parseInt(this.requestFaceShieldFrames.value) || 0,
+                visors: parseInt(this.requestVisors.value) || 0
+            },
+            notes: this.additionalNotes.value || "",
+            region: this.facilityRegion.value,
+            urgency: parseInt(this.requestUrgency.value) || 1
         }
 
         console.log(data);
