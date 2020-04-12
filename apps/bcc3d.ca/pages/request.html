@@ -31,113 +31,237 @@ facilityOptions:
 ---
 
 <div class="container">
+  <h2>Request Equipment</h2>
 
-    <h2>Request Equipment</h2>
+  <div class="row">
+    <form class="form-request col-lg-8" action="/request/thank-you">
+      <div class="form-group">
+        <label for="facilityName">Facility Name</label>
+        <input
+          name="facilityName"
+          id="facilityName"
+          type="text"
+          class="form-control"
+          required
+        />
+        <small id="facilityNameHelp" class="form-text text-muted"
+          >Name of facility and/or department</small
+        >
+      </div>
 
-    <div class="row">
-	<form class="form-request col-lg-8" action="/request/thank-you">
+      <div class="form-group">
+        <label for="facilityAddress">Facility Address</label>
+        <input
+          name="facilityAddress"
+          id="facilityAddress"
+          type="text"
+          class="form-control"
+          required
+        />
+        <small id="facilityAddressHelp" class="form-text text-muted"
+          >Facility address including city and postal code</small
+        >
+      </div>
 
-        <div class="form-group">
-          <label for="facilityName">Facility Name</label>
-          <input name="facilityName" id="facilityName" type="text" class="form-control" required>
-          <small id="facilityNameHelp" class="form-text text-muted">Name of facility and/or department</small>
+      <div id="facility-regions-container" class="form-group">
+        <label for="facilityRegion">Facility Region</label>
+        <div>
+          <select id="facilityRegion"> </select>
         </div>
+        <!-- region radio options rendered from request.html -->
+      </div>
 
-        <div class="form-group">
-          <label for="facilityAddress">Facility Address</label>
-          <input name="facilityAddress" id="facilityAddress" type="text" class="form-control" required>
-          <small id="facilityAddressHelp" class="form-text text-muted">Facility address including city and postal code</small>
-        </div>
+      <div class="form-group">
+        <label for="contactName">Contact Name</label>
+        <input
+          name="contactName"
+          id="contactName"
+          type="text"
+          class="form-control"
+          required
+        />
+        <small id="contactNameHelp" class="form-text text-muted"
+          >Name of the person who will coordinate the delivery</small
+        >
+      </div>
 
-        <div class="form-group">
-          <label for="contactName">Contact Name</label>
-          <input name="contactName" id="contactName" type="text" class="form-control" required>
-          <small id="contactNameHelp" class="form-text text-muted">Name of the person who will coordinate the delivery</small>
-        </div>
+      <div class="form-group">
+        <label for="contactPhone">Contact Mobile</label>
+        <input
+          name="contactPhone"
+          id="contactPhone"
+          type="text"
+          class="form-control"
+          required
+        />
+        <small id="contactPhoneHelp" class="form-text text-muted"
+          >We will contact you to confirm your request</small
+        >
+      </div>
 
-        <div class="form-group">
-          <label for="contactPhone">Contact Mobile</label>
-          <input name="contactPhone" id="contactPhone" type="text" class="form-control" required>
-          <small id="contactPhoneHelp" class="form-text text-muted">We will contact you to confirm your request</small>
-        </div>
+      <div class="form-group">
+        <label for="contactEmail">Contact Email Address</label>
+        <input
+          name="contactEmail"
+          id="contactEmail"
+          type="text"
+          class="form-control"
+          required
+        />
+        <small id="contactPhoneHelp" class="form-text text-muted">
+          We will contact you with information about your request
+        </small>
+      </div>
 
-
-
-        <h4 class="mt-4">Item Requests</h4>
-        <div class="p-3 mb-4 bg-light">
+      <h4 class="mt-4">Item Requests</h4>
+      <div class="p-3 mb-4 bg-light">
         <div class="row">
-            <div class="col form-group">
+          <div class="col form-group">
             <label for="requestFaceShieldFrames">Face Shield Frames</label>
-            <input name="requestFaceShieldFrames" id="requestFaceShieldFrames" type="number" class="form-control" value="0" min="0" required>
-            {% comment %} <small id="requestFaceShieldFramesHelp" class="form-text text-muted">...</small> {% endcomment %}
-            </div>
+            <input
+              name="requestFaceShieldFrames"
+              id="requestFaceShieldFrames"
+              type="number"
+              class="form-control"
+              value="0"
+              min="0"
+              required
+            />
+            {% comment %}
+            <small id="requestFaceShieldFramesHelp" class="form-text text-muted"
+              >...</small
+            >
+            {% endcomment %}
+          </div>
 
-            <div class="col form-group">
+          <div class="col form-group">
             <label for="requestVisors">Face Shield Visors</label>
-            <input name="requestVisors" id="requestVisors" type="number" class="form-control" value="0" min="0" required>
-            <small id="requestVisorsHelp" class="form-text text-muted">Please limit to 2 per frame</small>
-            </div>
+            <input
+              name="requestVisors"
+              id="requestVisors"
+              type="number"
+              class="form-control"
+              value="0"
+              min="0"
+              required
+            />
+            <small id="requestVisorsHelp" class="form-text text-muted"
+              >Please limit to 2 per frame</small
+            >
+          </div>
 
-            <div class="col form-group">
+          <div class="col form-group">
             <label for="requestEarSavers">Ear Savers</label>
-            <input name="requestEarSavers" id="requestEarSavers" type="number" class="form-control" value="0" min="0" required>
-            {% comment %} <small id="requestEarSaversHelp" class="form-text text-muted">...</small> {% endcomment %}
-            </div>
+            <input
+              name="requestEarSavers"
+              id="requestEarSavers"
+              type="number"
+              class="form-control"
+              value="0"
+              min="0"
+              required
+            />
+            {% comment %}
+            <small id="requestEarSaversHelp" class="form-text text-muted"
+              >...</small
+            >
+            {% endcomment %}
+          </div>
         </div>
+      </div>
+
+      <div class="form-group">
+        <label for="requestUrgency">Request Urgency</label>
+        {% comment %}
+        <input
+          name="requestUrgency"
+          id="requestUrgency"
+          type="number"
+          class="form-control"
+        />
+        {% endcomment %} {% for opt in page.urgencyOptions %}
+        <div class="custom-control custom-radio">
+          <input
+            type="radio"
+            name="requestUrgency"
+            id="requestUrgency-{{ opt.id }}"
+            class="custom-control-input"
+            value="{{ opt.id }}"
+            required
+          />
+          <label
+            class="custom-control-label"
+            for="requestUrgency-{{ opt.id }}"
+            >{{ opt.label }}</label
+          >
         </div>
+        {% endfor %} {% comment %}
+        <small id="requestUrgencyHelp" class="form-text text-muted">...</small>
+        {% endcomment %}
+      </div>
 
-        <div class="form-group">
+      <div class="form-group">
+        <label for="facilityType">Facility Type</label>
 
-            <label for="requestUrgency">Request Urgency</label>
-            {% comment %} <input name="requestUrgency" id="requestUrgency" type="number" class="form-control"> {% endcomment %}
-
-            {% for opt in page.urgencyOptions %}
-            <div class="custom-control custom-radio">
-                <input type="radio" name="requestUrgency" id="requestUrgency-{{ opt.id }}"  class="custom-control-input" value="{{ opt.id }}" required>
-                <label class="custom-control-label" for="requestUrgency-{{ opt.id }}">{{ opt.label }}</label>
-            </div>
-            {% endfor %}
-
-            {% comment %} <small id="requestUrgencyHelp" class="form-text text-muted">...</small> {% endcomment %}
+        {% for opt in page.facilityOptions %}
+        <div class="custom-control custom-radio">
+          <input
+            type="radio"
+            name="facilityType"
+            id="facilityType-{{ opt.id }}"
+            class="custom-control-input"
+            value="{{ opt.label }}"
+            required
+          />
+          <label class="custom-control-label" for="facilityType-{{ opt.id }}">{{
+            opt.label
+          }}</label>
         </div>
-
-        <div class="form-group">
-            <label for="facilityType">Facility Type</label>
-
-            {% for opt in page.facilityOptions %}
-            <div class="custom-control custom-radio">
-                <input type="radio" name="facilityType" id="facilityType-{{ opt.id }}" class="custom-control-input" value="{{ opt.label }}" required>
-                <label class="custom-control-label" for="facilityType-{{ opt.id }}">{{ opt.label }}</label>
-            </div>
-            {% endfor %}
-
-            {% comment %} <div class="form-group mt-1 ml-4">
-              <input name="facilityNameOther" id="facilityNameOther" type="text" class="form-control w-50">
-            </div> {% endcomment %}
-
+        {% endfor %} {% comment %}
+        <div class="form-group mt-1 ml-4">
+          <input
+            name="facilityNameOther"
+            id="facilityNameOther"
+            type="text"
+            class="form-control w-50"
+          />
         </div>
+        {% endcomment %}
+      </div>
 
-        <div class="bg-light p-3">
+      <div class="form-group">
+        <label for="additionalNotes">Additional Notes</label>
+        <input
+          name="additionalNotes"
+          id="additionalNotes"
+          type="text"
+          class="form-control"
+        />
+      </div>
 
-            <h4>DISCLAIMERS</h4>
-
-            <p>
-                OUR PROJECT IS STRICTLY NOT-FOR-PROFIT. NO MONEY IS TO CHANGE HANDS. Our products are not to be sold or resold.
-                Our efforts are entirely supported by the hard work of our volunteers and the generosity of our donors, partners, and suppliers.
-            </p>
-
-            <p>
-                THESE FACE SHIELDS ARE NOT APPROVED BY HEALTH CANADA AT THIS TIME. THEY SHOULD NOT BE CONSIDERED MEDICAL DEVICES.
-                They are produced in the community and intended to meet an urgent need. Use them at your own risk.
-            </p>
-
-        </div>
+      <div class="bg-light p-3">
+        <h4>DISCLAIMERS</h4>
 
         <p>
-            <button id="submitButton" class="btn btn-primary btn-lg">Submit Request</button>
+          OUR PROJECT IS STRICTLY NOT-FOR-PROFIT. NO MONEY IS TO CHANGE HANDS.
+          Our products are not to be sold or resold. Our efforts are entirely
+          supported by the hard work of our volunteers and the generosity of our
+          donors, partners, and suppliers.
         </p>
 
-    </form>
-    </div>
+        <p>
+          THESE FACE SHIELDS ARE NOT APPROVED BY HEALTH CANADA AT THIS TIME.
+          THEY SHOULD NOT BE CONSIDERED MEDICAL DEVICES. They are produced in
+          the community and intended to meet an urgent need. Use them at your
+          own risk.
+        </p>
+      </div>
 
+      <p>
+        <button id="submitButton" class="btn btn-primary btn-lg">
+          Submit Request
+        </button>
+      </p>
+    </form>
+  </div>
 </div>
