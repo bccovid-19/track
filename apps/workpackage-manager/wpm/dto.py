@@ -2,7 +2,7 @@ from marshmallow import Schema
 from marshmallow.fields import Str, Int, Nested, Raw, List
 from marshmallow.validate import Range, OneOf
 
-from openproject import CustomFieldOption
+from wpm.openproject import CustomFieldOption
 
 REQUESTED_ITEM_RANGE = Range(min=0, max=10000)
 VALID_FACILITY_TYPES = OneOf([
