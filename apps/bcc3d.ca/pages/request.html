@@ -48,19 +48,55 @@ facilityOptions:
           >Name of facility and/or department</small
         >
       </div>
-
-      <div class="form-group">
+      <div class="formt-group">
         <label for="facilityAddress">Facility Address</label>
         <input
           name="facilityAddress"
-          id="facilityAddress"
+          placeholder="Enter facility address"
+          id="facilityAddressInput"
           type="text"
           class="form-control"
           required
         />
-        <small id="facilityAddressHelp" class="form-text text-muted"
-          >Facility address including city and postal code</small
-        >
+        <div class="p-3 mb-4 bg-light">
+          <table id="addressTable">
+            <tr>
+              <td>Street address</small></td>
+              <td class="slimField">
+                <input class="field" id="street_number" disabled="true" />
+              </td>
+              <td class="wideField" colspan="2">
+                <input class="field" id="route" disabled="true" />
+              </td>
+            </tr>
+            <tr>
+              <td>City</td>
+              <td class="wideField" colspan="3">
+                <input class="field" id="locality" disabled="true" />
+              </td>
+            </tr>
+            <tr>
+              <td>Province</td>
+              <td class="slimField">
+                <input
+                  class="field"
+                  id="administrative_area_level_1"
+                  disabled="true"
+                />
+              </td>
+              <td>Postal code</td>
+              <td class="wideField">
+                <input class="field" id="postal_code" disabled="true" />
+              </td>
+            </tr>
+            <tr>
+              <td>Country</td>
+              <td class="wideField" colspan="3">
+                <input class="field" id="country" disabled="true" />
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
 
       <div id="facility-regions-container" class="form-group">
