@@ -10,7 +10,19 @@ window.onload = () => {
         .then((data) => {
             renderFacilityRegions(data.regions)
         });
+    initAutocomplete();
 };
+
+const initAutocomplete = () => {
+    // Create autocomplete object
+    const autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById("facilityAddressInput"), {types: ['geocode']}
+    );
+
+    // restrict dataset to only address fields
+    // WARNING: removing this restriction may cause additional charges on the GPC account
+    autocomplete.setFields(['address_component']);
+}
 
 const renderFacilityRegions = (regions) => {
     const facilityAddressContainer = $("#facilityRegion");

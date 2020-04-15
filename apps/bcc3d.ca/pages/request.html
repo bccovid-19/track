@@ -48,7 +48,7 @@ facilityOptions:
           >Name of facility and/or department</small
         >
       </div>
-      <div class="formt-group">
+      <div class="form-group">
         <label for="facilityAddress">Facility Address</label>
         <input
           name="facilityAddress"
@@ -58,7 +58,7 @@ facilityOptions:
           class="form-control"
           required
         />
-        <div class="p-3 mb-4 bg-light">
+        <!-- <div class="p-3 mb-4 bg-light">
           <table id="addressTable">
             <tr>
               <td>Street address</small></td>
@@ -96,7 +96,10 @@ facilityOptions:
               </td>
             </tr>
           </table>
-        </div>
+        </div> -->
+        <small id="contactPhoneHelp" class="form-text text-muted">
+          Address of the facility where the equipment will be delivered to
+        </small>
       </div>
 
       <div id="facility-regions-container" class="form-group">
@@ -300,4 +303,9 @@ facilityOptions:
       </p>
     </form>
   </div>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTTwbMQP_k_4P0JOY4SvtKJEF4JOjVsKM&libraries=places"
+    async
+    defer
+  ></script>
 </div>
