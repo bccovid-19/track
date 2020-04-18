@@ -3,14 +3,17 @@ import oyaml as yaml
 from jinja2 import Template, Environment, FileSystemLoader, StrictUndefined
 from glob import glob
 import os
+from deepmerge import always_merger
 
 TEMPLATE_DIR = 'templates'
 TARGET_DIR = 'build'
 
+with open('defaults.yml') as f:
+    defaults = yaml.safe_load(f)
 with open('config.yml') as f:
     config = yaml.safe_load(f)
 
-template_vars = config
+template_vars = always_merger.merge(defaults, config)
 template_vars['projectRoot'] = os.path.abspath('.')
 
 tmpl_env = Environment(

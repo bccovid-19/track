@@ -1,0 +1,12 @@
+---
+openproject:
+  structureTables:
+    - custom_actions
+    - custom_actions_projects
+    - custom_actions_roles
+    - custom_actions_statuses
+    - custom_actions_types
+    - custom_fields
+    - custom_fields_projects
+    - custom_fields_types
+    - custom_options

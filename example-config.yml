@@ -13,10 +13,3 @@ apps:
     hostname: track.local.bcc3d.ca
   bcc3d_ca:
     hostname: www.local.bcc3d.ca
-
-
-# Mostly don't worry about the settings below here
-scripts:
-  openproject:
-    structureTables:
-      - 

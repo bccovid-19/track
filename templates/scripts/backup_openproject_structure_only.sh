@@ -1,11 +1,18 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -e
 
-let filename = openproject-structure-$(date -Is).sql
+COMPOSE_FILE=${1:-./docker-compose.yml}
+TARGET=${1:-./backups}
+mkdir -p $TARGET
 
-echo DROP TABLE
+OUTPUT_FILE=$TARGET/openproject-structure-$(date -Is).sql
 
-docker-compose exec -T -u postgres op-db pg_dump -d openproject \
-  -t  \
-  -t  \
-  | gzip > ./backups/.sql.gz
+{%- for table in openproject.structureTables %}
+echo "DROP TABLE {{ table }}\n" > $OUTPUT_FILE
+{%- endfor %}
+
+docker-compose exec -f $COMPOSE_FILE -T -u postgres op-db pg_dump -d openproject \
+{%- for table in openproject.structureTables %}
+  -t {{ table }} \
+{%- endfor %}
+  > $OUTPUT_FILE
