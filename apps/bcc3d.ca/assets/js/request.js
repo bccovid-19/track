@@ -1,15 +1,11 @@
 ---
 ---
-const REGIONS_API_ENDPOINT = "https://www.qa.bcc3d.ca/api/v1/region";
+const REGIONS_API_ENDPOINT = "https://2d107b21-5927-4fac-bbe5-879c85d58f04.mock.pstmn.io/qa_url";
 
 window.onload = () => {
     fetch(REGIONS_API_ENDPOINT)
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            renderFacilityRegions(data.regions)
-        });
+        .then(response => response.json())
+        .then(data => renderFacilityRegions(data.regions));
 };
 
 const renderFacilityRegions = (regions) => {
