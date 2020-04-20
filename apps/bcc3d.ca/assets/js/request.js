@@ -1,6 +1,6 @@
 ---
 ---
-const REGIONS_API_ENDPOINT = "https://2d107b21-5927-4fac-bbe5-879c85d58f04.mock.pstmn.io/qa_url";
+const REGIONS_API_ENDPOINT = "{{ site.endpoints.hcp_submit }}";
 
 window.onload = () => {
     fetch(REGIONS_API_ENDPOINT)
