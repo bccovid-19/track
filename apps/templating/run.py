@@ -2,7 +2,7 @@
 import oyaml as yaml
 from jinja2 import Template, Environment, FileSystemLoader, StrictUndefined
 from glob import glob
-import os
+import os, stat
 from deepmerge import always_merger
 
 TEMPLATE_DIR = 'templates'
@@ -31,3 +31,7 @@ for tmpl_file_name in glob('{}/**'.format(TEMPLATE_DIR), recursive=True):
     print('Templating {} to {}'.format(tmpl_file_name, target_file_name), flush=True)
     os.makedirs(os.path.dirname(target_file_name), exist_ok=True)
     tmpl.stream(**template_vars).dump(target_file_name)
+
+for sh_file in glob(os.path.join(TARGET_DIR, template_vars['templating']['executablesGlob'])):
+    print('Making {} executable'.format(sh_file))
+    os.chmod(sh_file, stat.S_IXOTH)

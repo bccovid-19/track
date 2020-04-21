@@ -1,5 +1,10 @@
 ---
+templating:
+  executablesGlob: 'scripts/*'
+
 openproject:
+  initFile: ./init/openproject-structure-20200420-195733.sql
+
   structureTables:
     - custom_fields
     - custom_fields_projects

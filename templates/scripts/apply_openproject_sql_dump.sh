@@ -7,6 +7,7 @@ if [ -z "$1" ]
 fi
 
 echo 'Shutting down all containers to apply patch'
+echo 'Applying SQL file $1'
 docker-compose down
 docker-compose up -d op-db
 cat $1 | docker-compose exec -T -u postgres op-db psql openproject
