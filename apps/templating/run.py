@@ -6,7 +6,7 @@ import os
 from deepmerge import always_merger
 
 TEMPLATE_DIR = 'templates'
-TARGET_DIR = '.'
+TARGET_DIR = 'build'
 
 with open('defaults.yml') as f:
     defaults = yaml.safe_load(f)
