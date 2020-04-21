@@ -1,43 +1,24 @@
 -- PostgreSQL SQL dump to import OpenProject structural tables, e.g. workflows and custom fields
 
-
-DROP TABLE custom_fields;
-
-DROP TABLE custom_fields_projects;
-
-DROP TABLE custom_fields_types;
-
-DROP TABLE custom_options;
-
-DROP TABLE custom_values;
-
-DROP TABLE enterprise_tokens;
-
-DROP TABLE grid_widgets;
-
-DROP TABLE grids;
-
-DROP TABLE project_statuses;
-
-DROP TABLE projects;
-
-DROP TABLE projects_types;
-
-DROP TABLE queries;
-
-DROP TABLE role_permissions;
-
-DROP TABLE roles;
-
-DROP TABLE statuses;
-
-DROP TABLE types;
-
-DROP TABLE webhooks_events;
-
-DROP TABLE webhooks_webhooks;
-
-DROP TABLE workflows;
+DROP TABLE custom_fields CASCADE;
+DROP TABLE custom_fields_projects CASCADE;
+DROP TABLE custom_fields_types CASCADE;
+DROP TABLE custom_options CASCADE;
+DROP TABLE custom_values CASCADE;
+DROP TABLE enterprise_tokens CASCADE;
+DROP TABLE grid_widgets CASCADE;
+DROP TABLE grids CASCADE;
+DROP TABLE project_statuses CASCADE;
+DROP TABLE projects CASCADE;
+DROP TABLE projects_types CASCADE;
+DROP TABLE queries CASCADE;
+DROP TABLE role_permissions CASCADE;
+DROP TABLE roles CASCADE;
+DROP TABLE statuses CASCADE;
+DROP TABLE types CASCADE;
+DROP TABLE webhooks_events CASCADE;
+DROP TABLE webhooks_webhooks CASCADE;
+DROP TABLE workflows CASCADE;
 
 --
 -- PostgreSQL database dump
