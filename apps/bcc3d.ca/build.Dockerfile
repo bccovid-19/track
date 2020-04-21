@@ -3,4 +3,4 @@ ENV LANG C.UTF-8
 WORKDIR /build
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
-CMD ["bundle", "exec", "jekyll", "build"]
+CMD ["bundle", "exec", "jekyll", "serve"]
