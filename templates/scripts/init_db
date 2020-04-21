@@ -15,3 +15,5 @@ UPDATE public.settings
 SET value='{{ scheme }}'
 WHERE name='protocol';
 EOF
+
+docker-compose up -d
