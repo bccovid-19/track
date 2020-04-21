@@ -22,6 +22,10 @@
   link: /donations/
   highlight: false
 
+- name: Contact Us
+  link: /contact/
+  highlight: false
+
 - name: Request Equipment
   link: /request/
   highlight: true
