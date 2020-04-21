@@ -1,12 +1,22 @@
 ---
 openproject:
   structureTables:
-    - custom_actions
-    - custom_actions_projects
-    - custom_actions_roles
-    - custom_actions_statuses
-    - custom_actions_types
     - custom_fields
     - custom_fields_projects
     - custom_fields_types
     - custom_options
+    - custom_values
+    - enterprise_tokens
+    - grid_widgets
+    - grids
+    - project_statuses
+    - projects
+    - projects_types
+    - queries
+    - role_permissions
+    - roles
+    - statuses
+    - types
+    - webhooks_events
+    - webhooks_webhooks
+    - workflows
