@@ -2,6 +2,7 @@
 
 Starting the web-app (can be done locally, hopefully):
 
+1. Run`git submodule update --init --recursive` to initialize submodules
 1. Copy the settings in `example-config.yml` into `config.yml`.
 1. Copy an API key in `config/api_key.txt`.
 1. Run `sh build.sh` to build the templates into the local directory.
