@@ -6,7 +6,7 @@ TARGET=${1:-./backups}
 mkdir -p $TARGET
 
 OUTPUT_FILE=$TARGET/openproject-structure-$(date +'%Y%m%d-%H%M%S').sql
-echo '-- PostgreSQL SQL dump to import OpenProject structural tables, e.g. workflows and custom fields' > $OUTPUT_FILE
+echo $'-- PostgreSQL SQL dump to import OpenProject structural tables, e.g. workflows and custom fields\n\n' > $OUTPUT_FILE
 
 {%- for table in openproject.structureTables %}
 echo $'DROP TABLE {{ table }};\n' >> $OUTPUT_FILE
