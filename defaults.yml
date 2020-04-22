@@ -3,7 +3,7 @@ templating:
   executablesGlob: 'scripts/*'
 
 openproject:
-  initFile: ./init/openproject-structure-20200421-211326.sql
+  initFile: ./init/openproject-structure-20200421-212245.sql
 
   structureTables:
     - custom_fields
