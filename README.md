@@ -6,8 +6,10 @@ Starting the web-app (can be done locally, hopefully):
 1. Run `./build.sh` to build the templates into the local directory.
 1. Run `docker-compose up -d` to bring the docker-compose stack up.
 1. Run `./scripts/init_db` to import workflows. PLEASE WAIT for the `op-seeder` container to exit before doing this,
- as it needs to do the initial database set-up.
-1. Visit `www.local.bcc3d.ca` to see your local application! Default credentials are username `admin` password `admin`.
+as it needs to do the initial database set-up.
+1. Visit `track.local.bcc3d.ca` to see your local OpenProject (default credentials are username `admin` password `admin`), 
+and visit `www.local.bcc3d.ca` to see the local website.
+
 
 If you want to view logs use `docker-compose logs --tail=100 -f`
 
