@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
 # Template our config files
 docker-compose -f ./apps/templating/docker-compose.yml build

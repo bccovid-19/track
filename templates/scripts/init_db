@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 bash ./scripts/apply_openproject_sql_dump {{ openproject.initFile }}
 
 echo 'Setting OpenProject hostname to {{ apps.openproject.hostname }}'
