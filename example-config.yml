@@ -4,7 +4,7 @@ apps:
     hostname: track.local.bcc3d.ca
   bcc3d_ca:
     hostname: www.local.bcc3d.ca
-
+    google_analytics_key: UA-162929587-1
 scheme: http
 proxyPort: 80
 
