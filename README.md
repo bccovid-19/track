@@ -2,6 +2,7 @@
 
 Starting the web-app (can be done locally, hopefully):
 
+1. Run`git submodule update --init --recursive` to initialize submodules
 1. Copy the settings in `example-config.yml` into `config.yml`.
 1. Run `./build.sh` to build the templates into the local directory.
 1. Run `docker-compose up -d` to bring the docker-compose stack up.
