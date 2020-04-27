@@ -1,10 +1,4 @@
 ---
-apps:
-  openproject:
-    hostname: track.local.bcc3d.ca
-  bcc3d_ca:
-    hostname: www.local.bcc3d.ca
-
 scheme: http
 proxyPort: 80
 
@@ -13,3 +7,9 @@ openprojectApi:
   username:
   password:
   apikey:
+
+apps:
+  openproject:
+    hostname: track.local.bcc3d.ca
+  bcc3d_ca:
+    hostname: www.local.bcc3d.ca
