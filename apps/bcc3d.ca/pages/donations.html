@@ -62,9 +62,10 @@ permalink: /donations/
         We would like thank our direct financial contributors to the project:
       </p>
       <ul>
-        <li>DONOR #1</li>
-        <li>DONOR #2</li>
-      </ul> -->
+        {% for donor in site.data.donors %}
+        <li>{{donor.name}}</li>
+        {% endfor %}
+      </ul>-->
       <p>
         As we ramp into larger scale production to support our provincial and
         local health authorities, financial support is key as we are resource
