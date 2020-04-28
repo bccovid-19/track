@@ -9,7 +9,7 @@ permalink: /donations/
   <h2>Donations</h2>
 
   <div class="row">
-    <div class="col-md-4 order-2">
+    <div class="col-md-4 order-2" style="max-height: 80vh;">
       <h5>Donation Links</h5>
 
       <ul class="list-group mb-4">
@@ -29,6 +29,17 @@ permalink: /donations/
             ><i class="fad fa-donate fa-fw"></i> Donate using GoFundMe</a
           >
         </li>
+      </ul>
+      <h5>Donors</h5>
+      <ul class="list-group mb-4 overflow-auto" style="max-height: 50%;">
+        {% for donor in site.data.donors %}
+        <li class="list-group-item">
+          <div>{{donor.name}}</div>
+          <div>
+            <b>{{donor.amount}}</b>
+          </div>
+        </li>
+        {% endfor %}
       </ul>
     </div>
     <div class="col-md-8">
@@ -57,15 +68,6 @@ permalink: /donations/
       <h5>
         Finances
       </h5>
-      <!-- dynamically load donors list from here -->
-      <!-- <p>
-        We would like thank our direct financial contributors to the project:
-      </p>
-      <ul>
-        {% for donor in site.data.donors %}
-        <li>{{donor.name}}</li>
-        {% endfor %}
-      </ul>-->
       <p>
         As we ramp into larger scale production to support our provincial and
         local health authorities, financial support is key as we are resource
