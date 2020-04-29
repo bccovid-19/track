@@ -12,15 +12,15 @@ VISORS_FIELD_ID = 'customField8'
 EAR_SAVERS_FIELD_ID = 'customField9'
 CONTACT_NAME_FIELD_ID = 'customField4'
 CONTACT_PHONE_FIELD_ID = 'customField5'
-CONTACT_EMAIL_FIELD_ID = 'customField17'
+CONTACT_EMAIL_FIELD_ID = 'customField18'
 FACILITY_TYPE_FIELD_ID = 'customField2'
 URGENCY_FIELD_ID = 'customField6'
 FACILITY_NAME_FIELD_ID = 'customField1'
 FACILITY_ADDRESS_FIELD_ID = 'customField3'
-REGION_FIELD_ID_NUM = 19
+REGION_FIELD_ID_NUM = 16
 REGION_FIELD_ID = field_key(REGION_FIELD_ID_NUM)
 SUBJECT_FIELD_ID = 'subject'
-NOTES_FIELD_ID = 'customField18'
+NOTES_FIELD_ID = 'customField17'
 FACILITY_TYPE_OPTION_IDS = {name: i for i, name in enumerate([
     'Primary Care',
     'Nursing Home',
