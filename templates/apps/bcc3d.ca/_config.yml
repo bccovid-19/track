@@ -36,7 +36,7 @@ url: "{{ scheme }}://{{ apps.bcc3d_ca.hostname }}"
 google_analytics_key:
 
 endpoints:
-  hcp_submit: "{{ scheme }}://{{ apps.bcc3d_ca.hostname }}/api/v1/hcp/submit"
+  hcp_submit: "{{ scheme }}://{{ apps.bcc3d_ca.hostname }}/api/v1/hcp/request"
 
 # Build settings
 # theme: minima
