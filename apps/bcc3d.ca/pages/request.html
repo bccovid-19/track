@@ -145,13 +145,6 @@ facilityOptions:
               min="0"
               required
             />
-            <small id="requestVisorsHelp" class="form-text text-muted"
-<<<<<<< HEAD
-              >Please limit to 2 per frame</small
-=======
-              >.../small
->>>>>>> develop
-            >
           </div>
 
           <div class="col form-group">
@@ -193,9 +186,7 @@ facilityOptions:
             value="{{ opt.id }}"
             required
           />
-          <label
-            class="custom-control-label"
-            for="requestUrgency-{{ opt.id }}"
+          <label class="custom-control-label" for="requestUrgency-{{ opt.id }}"
             >{{ opt.label }}</label
           >
         </div>
@@ -217,9 +208,9 @@ facilityOptions:
             value="{{ opt.label }}"
             required
           />
-          <label class="custom-control-label" for="facilityType-{{ opt.id }}">{{
-            opt.label
-          }}</label>
+          <label class="custom-control-label" for="facilityType-{{ opt.id }}"
+            >{{ opt.label }}</label
+          >
         </div>
         {% endfor %} {% comment %}
         <div class="form-group mt-1 ml-4">
@@ -268,13 +259,10 @@ facilityOptions:
       </p>
     </form>
   </div>
-<<<<<<< HEAD
   <!-- replace API_KEY with Google Places API Key -->
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=API_KEY&libraries=places"
+    src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_api_key }}&libraries=places"
     async
     defer
   ></script>
-=======
->>>>>>> develop
 </div>
