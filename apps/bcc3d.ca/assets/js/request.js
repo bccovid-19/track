@@ -1,22 +1,19 @@
 ---
 ---
-const REGIONS_API_ENDPOINT = "https://www.qa.bcc3d.ca/api/v1/region";
+
+const REGIONS_API_ENDPOINT = "{{ site.endpoints.regions }}";
 
 window.onload = () => {
     fetch(REGIONS_API_ENDPOINT)
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            renderFacilityRegions(data.regions)
-        });
+        .then(response => response.json())
+        .then(data => renderFacilityRegions(data.regions));
     initAutocomplete();
 };
 
 const initAutocomplete = () => {
     // Create autocomplete object
     const autocomplete = new google.maps.places.Autocomplete(
-        document.getElementById("facilityAddressInput"), {types: ['geocode']}
+        document.getElementById("facilityAddress"), {types: ['geocode']}
     );
 
     // restrict dataset to only address fields

@@ -7,9 +7,9 @@ js: /assets/js/request.js
 
 urgencyOptions:
   - id: 1
-    label: Staff are working without face shields
+    label: Staff are working without PPE
   - id: 2
-    label: Face shields expected to run out in days
+    label: PPE expected to run out in days
   - id: 3
     label: Still have adequate stock for now
 
@@ -48,19 +48,19 @@ facilityOptions:
           >Name of facility and/or department</small
         >
       </div>
+
       <div class="form-group">
         <label for="facilityAddress">Facility Address</label>
         <input
           name="facilityAddress"
-          placeholder="Enter facility address"
-          id="facilityAddressInput"
+          id="facilityAddress"
           type="text"
           class="form-control"
           required
         />
-        <small id="contactPhoneHelp" class="form-text text-muted">
-          Address of the facility where the equipment will be delivered to
-        </small>
+        <small id="facilityAddressHelp" class="form-text text-muted"
+          >Facility address including city and postal code</small
+        >
       </div>
 
       <div id="facility-regions-container" class="form-group">
@@ -146,7 +146,11 @@ facilityOptions:
               required
             />
             <small id="requestVisorsHelp" class="form-text text-muted"
+<<<<<<< HEAD
               >Please limit to 2 per frame</small
+=======
+              >.../small
+>>>>>>> develop
             >
           </div>
 
@@ -264,10 +268,13 @@ facilityOptions:
       </p>
     </form>
   </div>
+<<<<<<< HEAD
   <!-- replace API_KEY with Google Places API Key -->
   <script
     src="https://maps.googleapis.com/maps/api/js?key=API_KEY&libraries=places"
     async
     defer
   ></script>
+=======
+>>>>>>> develop
 </div>

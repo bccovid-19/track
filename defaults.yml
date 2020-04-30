@@ -1,0 +1,29 @@
+---
+templating:
+  executablesGlob: 'scripts/*'
+
+openproject:
+  initFile: ./init/openproject-structure-20200421-212245.sql
+
+  structureTables:
+    - custom_fields
+    - custom_fields_projects
+    - custom_fields_types
+    - custom_options
+    - enabled_modules
+    - enterprise_tokens
+    - grid_widgets
+    - grids
+    - menu_items
+    - project_statuses
+    - projects
+    - projects_types
+    - queries
+    - role_permissions
+    - roles
+    - statuses
+    - types
+    - webhooks_events
+    - webhooks_webhooks
+    - wikis
+    - workflows
