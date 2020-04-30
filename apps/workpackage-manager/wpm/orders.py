@@ -52,7 +52,7 @@ def create_hcp_order_spec(hcp_request) -> WorkPackageSpec:
         extra_custom_options={
             URGENCY_FIELD_ID: URGENCY_OPTION_IDS[hcp_request['urgency']],
             FACILITY_TYPE_FIELD_ID: FACILITY_TYPE_OPTION_IDS[facility['type']],
-            REGION_FIELD_ID: hcp_request['region']
+            FACILITY_REGION_FIELD_ID: hcp_request['region']
         }
     )
 

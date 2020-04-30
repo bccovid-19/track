@@ -8,7 +8,7 @@ from flask import Flask, json, request, Blueprint
 
 from wpm.dto import HCPRequestSchema, RegionsResponseSchema
 from wpm.openproject import OpenProjectClient
-from wpm.orders import OrderProcessor, BatchedField, create_hcp_order_spec, REGION_FIELD_ID_NUM
+from wpm.orders import OrderProcessor, BatchedField, create_hcp_order_spec, FACILITY_REGION_FIELD_ID_NUM
 
 # Configuration constants
 CONFIG_FILE = 'config.yml'
@@ -77,7 +77,7 @@ def regions_get():
             schema:
               $ref: '#/definitions/RegionsResponse'
     """
-    options = openproject.get_custom_field_options(REGION_FIELD_ID_NUM)
+    options = openproject.get_custom_field_options(FACILITY_REGION_FIELD_ID_NUM)
     return RegionsResponseSchema.from_options(options)
 
 
