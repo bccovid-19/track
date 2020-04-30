@@ -144,6 +144,7 @@ class OpenProjectClient:
         return self.post('/api/v3/work_packages', spec.as_openproject_object())
 
     def get_custom_field_options(self, field_id: int) -> List[CustomFieldOption]:
+        logging.info("Getting custom field options for field id: {}".format(field_id))
         edit_page = self.get_soup('/custom_fields/{}/edit'.format(field_id))
         value_input_regex = re.compile(r'custom_field_custom_options_attributes_(\d+)_value')
         id_input_regex = re.compile(r'custom_field_custom_options_attributes_(\d+)_id')
