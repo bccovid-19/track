@@ -37,6 +37,7 @@ google_analytics_key:
 
 endpoints:
   hcp_submit: "{{ scheme }}://{{ apps.bcc3d_ca.hostname }}/api/v1/hcp/request"
+  regions: "{{ scheme }}://{{ apps.bcc3d_ca.hostname }}/api/v1/region"
 
 # Build settings
 # theme: minima

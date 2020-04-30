@@ -1,6 +1,6 @@
 ---
 ---
-const REGIONS_API_ENDPOINT = "{{ site.endpoints.hcp_submit }}";
+const REGIONS_API_ENDPOINT = "{{ site.endpoints.regions }}";
 
 window.onload = () => {
     fetch(REGIONS_API_ENDPOINT)
