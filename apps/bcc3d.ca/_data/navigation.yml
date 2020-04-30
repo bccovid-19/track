@@ -18,10 +18,17 @@
   link: /volunteers/
   highlight: false
 
+- name: Donations
+  link: /donations/
+  highlight: false
+
+- name: Contact Us
+  link: /contact/
+  highlight: false
+
 - name: Request Equipment
   link: /request/
   highlight: true
-
 # - name: Blog
 #   link: /blog/
 #   highlight: false

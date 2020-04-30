@@ -4,6 +4,7 @@ services:
   templating:
     build: .
     volumes:
+      - ../../defaults.yml:/app/defaults.yml
       - ../../config.yml:/app/config.yml
       - ../../templates:/app/templates
       - ../..:/app/build
