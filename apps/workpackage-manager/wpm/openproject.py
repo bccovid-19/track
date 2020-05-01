@@ -130,6 +130,15 @@ class OpenProjectClient:
         logging.debug('response {}'.format(json.dumps(result)))
         return result
 
+    def patch(self, path: str, json_body):
+        url = '{}{}'.format(self.url, path)
+        logging.info('PATCH {} with {}'.format(url, json.dumps(json_body)))
+        resp = requests.patch(url=url, json=json_body, auth=self.apikey_auth)
+        resp.raise_for_status()
+        result = resp.json()
+        logging.debug('response {}'.format(json.dumps(result)))
+        return result
+
     def get_work_package(self, id: int):
         return self.get_json('/api/v3/work_packages/{}'.format(id))
 
@@ -142,6 +151,9 @@ class OpenProjectClient:
 
     def create_work_package(self, spec: WorkPackageSpec):
         return self.post('/api/v3/work_packages', spec.as_openproject_object())
+
+    def patch_work_package(self, workpackage_id: int, field_updates: dict):
+        self.patch('/api/v3/work_packages/{}'.format(workpackage_id), field_updates)
 
     def get_custom_field_options(self, field_id: int) -> List[CustomFieldOption]:
         logging.info("Getting custom field options for field id: {}".format(field_id))

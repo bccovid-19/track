@@ -120,11 +120,24 @@ class OrderProcessor:
         """
         Processes an update message for the work-package with id `work_package_id`.
         This runs the batched production-order creation logic.
+        Also copies across Facility Address in Facility Address (Exportable).
         """
         logging.info('Updating work package id {}'.format(work_package_id))
         wp = openproject_client.get_work_package(work_package_id)
         linked_fields = wp['_embedded']
+
+        if (linked_fields['type']['id'] == ORDER_TYPE_ID
+                and FACILITY_ADDRESS_FIELD_ID in wp
+                and 'raw' in wp[FACILITY_ADDRESS_FIELD_ID]):
+            # Copy Facility Address into Facility Address (Exportable)
+            address = wp[FACILITY_ADDRESS_FIELD_ID]['raw']
+            logging.info('Copying address into exportable field for work-package {}'.format(work_package_id))
+            openproject_client.patch_work_package(
+                work_package_id,
+                {'lockVersion': wp['lockVersion'], FACILITY_ADDRESS_EXPORTABLE_FIELD_ID: address})
+
         if linked_fields['type']['id'] == ORDER_TYPE_ID and linked_fields['status']['id'] == CONFIRMED_STATUS_ID:
+            # Create PRODUCTION ORDERs in batches
             wp_order = self.parse_order(wp)
             logging.info('{} is a confirmed order: {}'.format(
                 work_package_id, wp_order))
