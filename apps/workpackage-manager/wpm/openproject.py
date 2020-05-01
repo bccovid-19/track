@@ -166,5 +166,5 @@ class OpenProjectClient:
         ids = {id_input_regex.match(i['id']).group(1): i['value'] for i in id_inputs}
         if set(values.keys()) != set(ids.keys()):
             logging.error('OpenProject soup parsing issue {} vs. {}'.format(values.keys(), ids.keys()))
-        keys = [id_input_regex.match(i['id'].group(1)) for i in id_inputs]
+        keys = [id_input_regex.match(i['id']).group(1) for i in id_inputs]
         return [CustomFieldOption(label=values[k], id=ids[k]) for k in keys]
