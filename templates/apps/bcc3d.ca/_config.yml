@@ -31,6 +31,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "{{ scheme }}://{{ apps.bcc3d_ca.hostname }}"
+google_maps_api_key:
 # twitter_username: jekyllrb
 # github_username:  jekyll
 google_analytics_key: "{{ apps.bcc3d_ca.google_analytics_key }}"
