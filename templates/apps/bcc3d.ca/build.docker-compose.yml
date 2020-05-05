@@ -8,4 +8,4 @@ services:
     volumes:
       - .:/build
     environment:
-      - JEKYLL_ENV={{ apps.bcc3d_ca.jekyll_environment|default('development', true) }}
+      - JEKYLL_ENV={{ 'production' if apps.bcc3d_ca.production else 'development'}}
