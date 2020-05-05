@@ -9,6 +9,7 @@
 /scripts
 /docker-compose.yml
 /apps/bcc3d.ca/_config.yml
+/apps/bcc3d.ca/build.docker-compose.yml
 
 
 # Secret keys
