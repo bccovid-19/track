@@ -15,4 +15,4 @@ apps:
     hostname: www.local.bcc3d.ca
     google_analytics_key: UA-162929587-1
     google_maps_api_key:
-    production: true
+    production: false
