@@ -7,3 +7,5 @@ services:
       context: .
     volumes:
       - .:/build
+    environment:
+      - JEKYLL_ENV={{ 'production' if apps.bcc3d_ca.production else 'development'}}
