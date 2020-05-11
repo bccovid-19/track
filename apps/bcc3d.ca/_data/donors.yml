@@ -1,3 +1,12 @@
+- name: Diosa Ignacio
+  amount: $20.00
+  date: "May 10th, 2020"
+- name: Christina Kiing
+  amount: $120.00
+  date: "May 9th, 2020"
+- name: Carelife Fleetwood
+  amount: $75.50
+  date: "May 7th, 2020"
 - name: Anonymous
   amount: $150.00
   date: "May 2nd, 2020"
