@@ -30,6 +30,9 @@ FACILITY_TYPE_OPTION_IDS = {name: i for i, name in enumerate([
     'Hospital',
     'Health Authority / Other Organization',
     'Pharmacy',
+    'Dentist',
+    'Physio, Chiropractor or Massage',
+    'Non-Medical',
     'Other'
 ], 1)}
 URGENCY_OPTION_IDS = {
