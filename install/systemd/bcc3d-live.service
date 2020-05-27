@@ -1,0 +1,9 @@
+[Unit]
+Description=BCC3D Live Docker Compose Stack
+
+[Service]
+ExecStartPre=/opt/bin/docker-compose -f /home/core/live/docker-compose.yml down
+ExecStart=/opt/bin/docker-compose -f /home/core/live/docker-compose.yml up
+
+[Install]
+WantedBy=multi-user.target
