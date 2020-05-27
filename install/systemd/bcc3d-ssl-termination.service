@@ -1,0 +1,9 @@
+[Unit]
+Description=BCC3D SSL termination service
+
+[Service]
+ExecStartPre=/opt/bin/docker-compose -f /home/core/live/apps/ssl/docker-compose.yml down
+ExecStart=/opt/bin/docker-compose -f /home/core/live/apps/ssl/docker-compose.yml up
+
+[Install]
+WantedBy=multi-user.target
