@@ -7,5 +7,7 @@ systemctl daemon-reload
 systemctl enable --now bcc3d-live
 systemctl enable --now bcc3d-qa
 systemctl enable --now bcc3d-ssl-termination
+systemctl enable --now overwrite-keys
+
 
 echo "systemd units installed and enabled"
