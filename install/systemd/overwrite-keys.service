@@ -4,7 +4,7 @@ After=oem-cloudinit.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/cp /home/core/authorized_keys /home/core/.ssh/authorized_keys
+ExecStart=/usr/bin/cp /home/core/live/install/authorized_keys /home/core/.ssh/authorized_keys
 
 [Install]
 WantedBy=multi-user.target
