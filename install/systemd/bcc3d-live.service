@@ -1,9 +1,16 @@
 [Unit]
 Description=BCC3D Live Docker Compose Stack
+Requires=docker.service
+After=docker.service
 
 [Service]
-ExecStartPre=/opt/bin/docker-compose -f /home/core/live/docker-compose.yml down
-ExecStart=/opt/bin/docker-compose -f /home/core/live/docker-compose.yml up
+Environment=COMPOSEFILE=/home/core/live/docker-compose.yml
+ExecStartPre=/opt/bin/docker-compose -f $COMPOSEFILE down
+ExecStart=/opt/bin/docker-compose -f $COMPOSEFILE up
+ExecStop=/opt/bin/docker-compose -f $COMPOSEFILE down
+Restart=always
+RestartSec=30
 
 [Install]
 WantedBy=multi-user.target
+Alias=live
