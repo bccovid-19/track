@@ -13,4 +13,3 @@ RestartSec=30
 
 [Install]
 WantedBy=multi-user.target
-Alias=live
