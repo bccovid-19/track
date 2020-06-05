@@ -1,3 +1,15 @@
+- name: Staff at Charles Dickens Elementary
+  amount: $70.00
+  date: "June 4th, 2020"
+- name: UBC Homemade PPE Initiative
+  amount: $70.00
+  date: "June 4th, 2020"
+- name: Nose & Hearts
+  amount: $200.00
+  date: "May 31st, 2020"
+- name: Anonymous
+  amount: $20.00
+  date: "May 26th, 2020"
 - name: Diosa Ignacio
   amount: $20.00
   date: "May 10th, 2020"
