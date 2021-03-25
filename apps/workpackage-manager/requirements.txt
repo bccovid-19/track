@@ -1,5 +1,5 @@
 flask==1.1.2
-pyyaml==5.3.1
+pyyaml==5.4
 requests==2.23.0
 flasgger==0.9.4
 apispec==3.3.0
